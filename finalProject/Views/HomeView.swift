@@ -93,8 +93,7 @@ struct HomeView: View {
                                                 .transition(.move(edge: .trailing))
                                                 .zIndex(1)
 //                                                .fullScreenCover(isPresented: $show, content: DetailsGameView.init)
-                                                
-
+                                    
                                         }
                                     }
                                     .onTapGesture {
