@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
-
+import FirebaseCore
 @main
 struct finalProjectApp: App {
+    
+    @ObservedObject var UserData = UserDataViewModel()
+    init(){
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            SignUp()
+//            RootView()
+            GamesListView().environmentObject(UserData)
         }
     }
 }
