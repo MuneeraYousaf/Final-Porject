@@ -63,32 +63,32 @@ struct SignIn: View {
         }
         
     }
-    func signIn(_ email: String, _ pass: String){
+    // Function for signing in with email and password
+    func signIn(_ email: String, _ pass: String) {
+        // Use Firebase Authentication to sign in with the provided email and password
         Auth.auth().signIn(withEmail: email, password: pass) { result, errors in
             if errors != nil {
-                print("error")
-            
-            }else
-            {
-//                print("s")
+                // Handle and print any sign-in errors
+                print("Error occurred during sign-in.")
+            } else {
+                // Sign-in was successful, set a flag to show the next page
                 showNextPage = true
             }
-            
-            
         }
-        
     }
-    func authentication(_ password: String, _ rpassword: String, _ email: String){
-        if password == rpassword{
-            print("samee")
+
+    // Function for authentication, checking if passwords match, and triggering sign-in
+    func authentication(_ password: String, _ rpassword: String, _ email: String) {
+        if password == rpassword {
+            // If passwords match, call the sign-in function with the provided email and password
+            print("Passwords match.")
             signIn(email, password)
+        } else {
+            // If passwords don't match, handle the mismatch
+            print("Passwords do not match.")
         }
-        else{
-            print("wrong")
-        }
-        
-        
     }
+
 }
 
 struct SignIn_Previews: PreviewProvider {

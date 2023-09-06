@@ -40,7 +40,7 @@ struct SignUp: View {
                         //                        .keyboardType(.phonePad)
                             .padding(.vertical,8)
                         
-                        TextField("Email @example.com", text: $email)
+                        TextField("Email. @example.com", text: $email)
                             .padding(.leading)
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
@@ -82,7 +82,10 @@ struct SignUp: View {
                         
                         authentication(password, repassword, email)
                     }, label: {
-                        Text("SIGN UP ").frame(width: 360, height: 60).background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684)).foregroundColor(.white)
+                        Text("SIGN UP ")
+                            .frame(width: 360, height: 60)
+                            .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
+                            .foregroundColor(.white)
                             .cornerRadius(16)
                     }).padding(.vertical, 40)
                     Spacer()
@@ -109,33 +112,38 @@ struct SignUp: View {
         }
         
     }
-    func signUp(_ email: String, _ pass: String){
-        Auth.auth().createUser(withEmail: email, password: pass) {  results, errors in
-            if errors != nil {
-                print("\(String(describing: errors))error")
-            
-            }else
-            {
-                print("succc")
+    // Function for user registration (sign-up) using email and password
+    func signUp(_ email: String, _ pass: String) {
+        // Use Firebase Authentication to create a new user with the provided email and password
+        Auth.auth().createUser(withEmail: email, password: pass) { results, errors in
+            if let error = errors {
+                // Handle and print any registration errors
+                print("Error occurred during user registration: \(error.localizedDescription)")
+            } else {
+                // Registration was successful, print a success message
+                print("User registration successful.")
+                
+                // Add user data to your user management system (e.g., userData) if needed
                 userData.addUser(username: userName, email: email, phone: phone, image: "")
+                
+                // Set a flag to indicate that the next page should be shown
                 showNextPage = true
             }
-            
-            
         }
-        
     }
-    func authentication(_ password: String, _ rpassword: String, _ email: String){
-        if password == rpassword{
-            print("samee")
+
+    // Function for authentication, checking if passwords match, and triggering user registration
+    func authentication(_ password: String, _ rpassword: String, _ email: String) {
+        if password == rpassword {
+            // If passwords match, call the sign-up function with the provided email and password
+            print("Passwords match.")
             signUp(email, password)
+        } else {
+            // If passwords don't match, handle the mismatch
+            print("Passwords do not match.")
         }
-        else{
-            print("wrong")
-        }
-        
-        
     }
+
 }
 
 struct SignUp_Previews: PreviewProvider {
