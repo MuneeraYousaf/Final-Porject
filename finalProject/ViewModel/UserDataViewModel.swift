@@ -14,6 +14,7 @@ import FirebaseAuth
 class UserDataViewModel : ObservableObject {
     @Published var users: [UserModel] = []
     @Published var games: [GameData] = []
+    @Published var favoriteGames: [GameData] = []
     
     //MARK: Add user to firebase
     func addUser(username: String, email: String, phone: String, image: String) {
@@ -238,41 +239,45 @@ class UserDataViewModel : ObservableObject {
     }
 
     
-    func fetchFavoriteGames(completion: @escaping ([GameData]) -> Void) {
+    func fetchFavoriteGames() {
         if let user = Auth.auth().currentUser {
             let userFavoritesCollection = Firestore.firestore().collection("users").document(user.uid).collection("favorites")
 
-            userFavoritesCollection.getDocuments { querySnapshot, error in
+            userFavoritesCollection.addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     print("Error fetching favorite games: \(error)")
-                    completion([])
-                } else {
-                    var favoriteGames: [GameData] = []
-                    for document in querySnapshot?.documents ?? [] {
-                        let data = document.data()
+                    return // Return early to prevent further execution in case of an error
+                }
+                
+                var favoriteGames: [GameData] = []
+                
+                for document in querySnapshot?.documents ?? [] {
+                    let data = document.data()
+                    
+                    // Extract the required fields from the data dictionary
+                    if let id = data["id"] as? String,
+                       let name = data["name"] as? String,
+                       let about = data["about"] as? String,
+                       let images = data["images"] as? [[String: String]],
+                       let details = data["details"] as? [[String: Any]],
+                       let stars = data["stars"] as? Int,
+                       let age = data["age"] as? String {
                         
-                        // Extract the required fields from the data dictionary
-                        if let id = data["id"] as? String,
-                           let name = data["name"] as? String,
-                           let about = data["about"] as? String,
-                           let images = data["images"] as? [[String: String]],
-                           let details = data["details"] as? [[String: Any]] ,
-                           let stars = data["stars"] as? Int,
-                        let age = data["age"]as? String{
-                            
-                            // Create a GameData instance manually
-                            let game = GameData(id: id, name: name, images: images.map { Image(src: $0["src"] ?? "") }, about: about, details: [],stars: stars, age: age)
-                            
-                            favoriteGames.append(game)
-                        }
+                        // Create a GameData instance manually
+                        let game = GameData(id: id, name: name, images: images.map { Image(src: $0["src"] ?? "") }, about: about, details: [], stars: stars, age: age)
+                        
+                        favoriteGames.append(game)
                     }
-                    completion(favoriteGames)
+                }
+                
+                // Update the @State property here
+                DispatchQueue.main.async {
+                    self.favoriteGames = favoriteGames
                 }
             }
-        } else {
-            completion([])
         }
     }
+
 
 
 }

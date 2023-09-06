@@ -145,7 +145,7 @@ struct FavoritesView: View {
 
     var body: some View {
         
-        List(favoriteGames, id: \.id) { game in
+        List(userData.favoriteGames, id: \.id) { game in
             Text(game.name)
         }
         .onAppear {
@@ -154,8 +154,6 @@ struct FavoritesView: View {
     }
 
     func fetchFavoriteGames() {
-        userData.fetchFavoriteGames { favoriteGames in
-            self.favoriteGames = favoriteGames
-        }
+        userData.fetchFavoriteGames()
     }
 }
