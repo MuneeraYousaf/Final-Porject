@@ -20,6 +20,9 @@ struct finalProjectApp: App {
 //            RootView()
             GamesListView().environmentObject(UserData)
 //            FavoritesView().environmentObject(UserData)
+            
+            mainView()
+            
         }
     }
 }
