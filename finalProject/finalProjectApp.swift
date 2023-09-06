@@ -21,7 +21,7 @@ struct finalProjectApp: App {
             GamesListView().environmentObject(UserData)
 //            FavoritesView().environmentObject(UserData)
             
-            mainView()
+//            mainView()
             
         }
     }
