@@ -7,10 +7,10 @@
 
 import SwiftUI
 import Firebase
-//FirebaseApp.configure()
+
 
 struct RootView: View {
-    //    let db = Database.database().reference()
+   
     var body: some View {
         VStack {
             

@@ -19,6 +19,7 @@ struct finalProjectApp: App {
 //            SignUp()
 //            RootView()
             GamesListView().environmentObject(UserData)
+//            FavoritesView().environmentObject(UserData)
         }
     }
 }
