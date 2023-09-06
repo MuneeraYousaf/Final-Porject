@@ -9,9 +9,10 @@ import SwiftUI
 
 struct DetailsGameView: View {
     var body: some View {
-              
+//        NavigationView{
         ScrollView{
             VStack{
+
                 
                 Image("Game 1")
                     .resizable()
@@ -121,12 +122,15 @@ FINAL FANTASY XVI gives players an entirely new world and cast of characters set
                     Spacer()
                     NavigationLink(
                         destination: CommentView()) {
-                            Text("See all review >")}
+                            Text("See all review >")
+//                            Image(systemName: "arrow.right.square")
+                        }.buttonStyle(.plain)
                         
+                    
                 }.padding(.horizontal)
             }
         }
-    
+//        }
     }
 }
 

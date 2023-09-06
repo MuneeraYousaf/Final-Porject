@@ -15,7 +15,7 @@ struct HomeView: View {
 
     var body: some View {
 
-//        NavigationStack {
+
             VStack{
                 HStack{
                     //                Image(systemName: "line.3.horizontal")
@@ -31,15 +31,24 @@ struct HomeView: View {
                 }
                 .padding()
 
-                HStack{
-                    Image(systemName: "magnifyingglass")
+//                HStack{
+//                    Image(systemName: "magnifyingglass")
+//                    TextField("Search Game..", text: $searchedText)
+//                }
+//                .padding()
+//
+//                .background(RoundedRectangle(cornerRadius: 12.5)
+//                    .fill(.gray.opacity(0.25)))
+//                .padding(.horizontal)
+                // Search Text Field
+                VStack{
                     TextField("Search Game..", text: $searchedText)
-                }
-                .padding()
-
-                .background(RoundedRectangle(cornerRadius: 12.5)
-                    .fill(.gray.opacity(0.25)))
-                .padding(.horizontal)
+                        .padding()
+                        .frame(height:40)
+                        .background(Color(white: 0.97))
+                        .cornerRadius(16)
+                        
+                }.padding(.horizontal)
                 HStack{
                     Text("Categories -")
                         .foregroundColor(.gray)
@@ -74,33 +83,34 @@ struct HomeView: View {
                 }
 
                 ScrollView(showsIndicators:false){
-    //                NavigationLink(
-    //                    destination: {
-    //                        DetailsGameView()
-    //                    }, label: {
-    //                        GameView()}
-    //                )
+                    NavigationLink(
+                        destination: {
+                            DetailsGameView()
+                        }, label: {
+                            GameView()}
+                    )
 
-                                    ZStack {
-                                        if !show {
-
-                                            GameView()
-                                                .padding()
-
-                                        } else {
-                                            DetailsGameView()
-                                                .padding()
-                                                .transition(.move(edge: .trailing))
-                                                .zIndex(1)
-//                                                .fullScreenCover(isPresented: $show, content: DetailsGameView.init)
-                                    
-                                        }
-                                    }
-                                    .onTapGesture {
-                                        withAnimation(.spring()) {
-                                            show.toggle()
-                                        }
-                                    }
+//                                    ZStack {
+//                                        if !show {
+//
+//                                            GameView()
+////                                                .padding()
+//
+//                                        } else {
+//                                            DetailsGameView()
+//                                    .padding()
+//                                .transition(.move(edge: .trailing))
+//                                .zIndex(1)
+////                                                .fullScreenCover(isPresented: $show, content: DetailsGameView.init)
+////                                                .navigationBarBackButtonHidden(true)
+//                                    
+//                                        }
+//                                    }
+//                                    .onTapGesture {
+//                                        withAnimation(.spring()) {
+//                                            show.toggle()
+//                                        }
+//                                    }
                 }
 
             }
