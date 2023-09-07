@@ -1,71 +1,13 @@
-////
-////  test.swift
-////  finalProject
-////
-////  Created by Muneera Y on 19/02/1445 AH.
-////
 //
-//import SwiftUI
+//  test.swift
+//  finalProject
 //
-//import Firebase
-//
-//
-//import FirebaseFirestore
-//
-//struct GamesListView: View {
-//    var filteredGames: [GameData] = []
-//    @State private var selectedAgeIndex = 0
-//    let ageRanges = ["All", "13+", "18+", "10+"]
-//    @State private var searchText = ""
-//    @EnvironmentObject var gamesData: UserDataViewModel
-//
-//    var body: some View {
-//        VStack{
-//            Picker("Select Age", selection: $selectedAgeIndex) {
-//                ForEach(0..<ageRanges.count, id: \.self) { index in
-//                    Text(ageRanges[index])
-//                }
-//            }
-//            .pickerStyle(SegmentedPickerStyle())
-//            .padding()
-//
-//            List {
-//                TextField("Search by game name", text: $searchText)
-//
-//                ForEach(filteredGames, id: \.id) { game in
-//                    Text(game.name)
-//                }
-//            }
-//            .onAppear {
-//                gamesData.fetchGames()
-//            }
-//        }
-//    }
-//
-//        var filteredGames: [GameData] {
-//            if searchText.isEmpty {
-//                return gamesData.games
-//            } else {
-//                return gamesData.games.filter { game in
-//                    return game.name.lowercased().contains(searchText.lowercased())
-//                }
-//            }
-//        }
-//    var filteredGames: [GameData] {
-//        if selectedAgeIndex == 0 {
-//            return gamesData.games // Show all games
-//        } else {
-//            // Filter games by age range based on selectedAgeIndex
-//            let selectedAge = ageRanges[selectedAgeIndex]
-//            return gamesData.games.filter { game in
-//                return game.age.lowercased() == selectedAge.lowercased()
-//            }
-//        }
-//    }
-//}
+//  Created by Muneera Y on 19/02/1445 AH.
 //
 
+
 import SwiftUI
+import Firebase
 
 struct GamesListView: View {
     @State private var selectedAgeIndex = 0
@@ -137,16 +79,20 @@ struct GamesListView: View {
     
 }
 
-import SwiftUI
+
 
 struct FavoritesView: View {
     @EnvironmentObject var userData: UserDataViewModel
-    @State private var favoriteGames: [GameData] = []
 
     var body: some View {
-        
         List(userData.favoriteGames, id: \.id) { game in
             Text(game.name)
+            Button( action: {
+                userData.deleteFavoriteGame(game)
+                   },label:  {
+                       Text("Delete")
+                           .foregroundColor(.red)
+                   })
         }
         .onAppear {
             fetchFavoriteGames()
@@ -156,4 +102,13 @@ struct FavoritesView: View {
     func fetchFavoriteGames() {
         userData.fetchFavoriteGames()
     }
+    
+   
+
 }
+
+
+
+
+    
+

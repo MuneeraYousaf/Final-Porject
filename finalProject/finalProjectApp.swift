@@ -18,7 +18,10 @@ struct finalProjectApp: App {
         WindowGroup {
 //            SignUp()
 //            RootView()
-            GamesListView().environmentObject(UserData)
+//            GamesListView().environmentObject(UserData)
+            mainView().environmentObject(UserData)
+            
+//            ProfileView()
 //            FavoritesView().environmentObject(UserData)
             
 //            mainView()

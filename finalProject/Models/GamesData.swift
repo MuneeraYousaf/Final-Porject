@@ -10,24 +10,25 @@ import SwiftUI
 struct GameData: Codable{
     let id: String
     let name: String
-    let images: [Image]
+    let images: [images]
     let about: String
     let details: [Detail]
     let stars: Int
     let age: String
 }
 
-struct Image: Codable {
+struct images: Codable {
     let src: String
 
 }
 
-struct Detail: Codable {
+struct Detail: Codable, Identifiable {
+    let id = UUID()
     let key: String
-    let values: [Value]
+    let values: [String]
 }
 
-enum Value: Codable {
+enum Values: Codable {
     case string(String)
     case stringArray([String])
 
@@ -41,7 +42,7 @@ enum Value: Codable {
             self = .stringArray(x)
             return
         }
-        throw DecodingError.typeMismatch(Value.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Value"))
+        throw DecodingError.typeMismatch(Values.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Value"))
     }
 
     func encode(to encoder: Encoder) throws {

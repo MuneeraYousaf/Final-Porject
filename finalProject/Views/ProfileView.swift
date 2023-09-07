@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var users: UserDataViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ForEach(users.users, id: \.id){
+            i in
+            Text(i.email)
+        }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView().environmentObject(UserDataViewModel())
     }
 }

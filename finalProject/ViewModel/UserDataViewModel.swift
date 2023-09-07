@@ -126,10 +126,59 @@ class UserDataViewModel : ObservableObject {
 //                }
 //            }
 //
+//    func fetchGames() {
+//        // Create a reference to the Firestore "games" collection
+//        let gamesCollection = Firestore.firestore().collection("games")
+//
+//        // Add a snapshot listener to the collection to listen for changes
+//        gamesCollection.addSnapshotListener { querySnapshot, error in
+//            if let error = error {
+//                // Handle and print any errors that occur during the fetch
+//                print("Error fetching documents: \(error)")
+//                return
+//            }
+//
+//            // Check if there are any documents in the query snapshot
+//            guard let documents = querySnapshot?.documents else {
+//                // If there are no documents, print a message and return
+//                print("No documents")
+//                return
+//            }
+//
+//            // Use compactMap to process each document in the snapshot
+//            self.games = documents.compactMap { document in
+//                do {
+//                    // Try to extract the document data as a dictionary
+//                    if let data = document.data() as? [String: Any] {
+//                        // Convert the dictionary data to JSON data
+//                        let jsonData = try JSONSerialization.data(withJSONObject: data)
+//
+//                        // Create a JSON decoder
+//                        let decoder = JSONDecoder()
+//
+//                        // Attempt to decode the JSON data into a GameData object
+//                        let game = try decoder.decode(GameData.self, from: jsonData)
+//
+//                        // Return the decoded GameData object
+//                        return game
+//                    } else {
+//                        // If data couldn't be extracted or decoded, return nil
+//                        return nil
+//                    }
+//                } catch {
+//                    // Handle any errors that occur during decoding and print an error message
+//                    print("Error decoding game data: \(error)")
+//                    return nil
+//                }
+//            }
+//        }
+//    }
+
+    
     func fetchGames() {
         // Create a reference to the Firestore "games" collection
         let gamesCollection = Firestore.firestore().collection("games")
-        
+
         // Add a snapshot listener to the collection to listen for changes
         gamesCollection.addSnapshotListener { querySnapshot, error in
             if let error = error {
@@ -137,106 +186,100 @@ class UserDataViewModel : ObservableObject {
                 print("Error fetching documents: \(error)")
                 return
             }
+            if let snapshot = querySnapshot {
+                snapshot.documentChanges.forEach { change in
+                    DispatchQueue.main.async {
+                        let data = change.document.data()
+                        let id = change.document.documentID
 
-            // Check if there are any documents in the query snapshot
-            guard let documents = querySnapshot?.documents else {
-                // If there are no documents, print a message and return
-                print("No documents")
-                return
-            }
+                        if let name = data["name"] as? String,
+                           let about = data["about"] as? String,
+                           let detailsData = data["details"] as? [[String: Any]], // Assuming detailsData is an array of dictionaries
+                           let stars = data["stars"] as? Int,
+                           let age = data["age"] as? String,
+                           let imagesData = data["images"] as? [[String: String]]{
 
-            // Use compactMap to process each document in the snapshot
-            self.games = documents.compactMap { document in
-                do {
-                    // Try to extract the document data as a dictionary
-                    if let data = document.data() as? [String: Any] {
-                        // Convert the dictionary data to JSON data
-                        let jsonData = try JSONSerialization.data(withJSONObject: data)
+                            // Convert detailsData to an array of Detail objects
+                            let details: [Detail] = detailsData.compactMap { detailDict in
+                                guard let key = detailDict["key"] as? String,
+                                      let values = detailDict["values"] as? [String] else {
+                                    return nil
+                                }
+                                return Detail(key: key, values: values)
+                            }
                         
-                        // Create a JSON decoder
-                        let decoder = JSONDecoder()
-                        
-                        // Attempt to decode the JSON data into a GameData object
-                        let game = try decoder.decode(GameData.self, from: jsonData)
-                        
-                        // Return the decoded GameData object
-                        return game
-                    } else {
-                        // If data couldn't be extracted or decoded, return nil
-                        return nil
+
+                            // Create a GameData instance with the retrieved data
+                            let game = GameData(id: id, name: name, images: imagesData.map { imageDict in
+                                let src = imageDict["src"] ?? ""
+                                return images(src: src)
+                            }, about: about, details: details, stars: stars, age: age)
+
+                            self.games.append(game)
+                        }
                     }
-                } catch {
-                    // Handle any errors that occur during decoding and print an error message
-                    print("Error decoding game data: \(error)")
-                    return nil
                 }
             }
         }
     }
-//    func addFavoriteGame(_ game: GameData) {
-//            if let user = Auth.auth().currentUser {
-//                let userFavoritesCollection = Firestore.firestore().collection("users").document(user.uid).collection("favorites")
-//
-//                // Convert the game data to a dictionary
-//                let gameData: [String: Any] = [
-//                    "id": game.id,
-//                    "name": game.name,
-//                    // Add other game properties as needed
-//                ]
-//
-//                // Add the game data to the "favorites" collection
-//                userFavoritesCollection.addDocument(data: gameData) { error in
-//                    if let error = error {
-//                        print("Error adding favorite game: \(error)")
-//                    } else {
-//                        print("Favorite game added successfully!")
-//                    }
-//                }
-//            }
-//        }
+
+    
     func addFavoriteGame(_ game: GameData) {
         if let user = Auth.auth().currentUser {
             let userFavoritesCollection = Firestore.firestore().collection("users").document(user.uid).collection("favorites")
 
-            // Convert the game data to a dictionary
-            let gameData: [String: Any] = [
-                "id": game.id,
-                "name": game.name,
-                "images": game.images.map { image in
-                    return [
-                        "src": image.src
-                    ]
-                },
-                "about": game.about,
-                "details": game.details.map { detail in
-                    return [
-                        "key": detail.key ?? "",
-                        "values": detail.values.map { value in
-                            switch value {
-                            case .string(let stringValue):
-                                return stringValue
-                            case .stringArray(let stringArrayValue):
-                                return stringArrayValue.joined(separator: ", ") // Join array elements into a single string
+            // Check if the game already exists in the user's favorites
+            userFavoritesCollection.whereField("id", isEqualTo: game.id).getDocuments { [self] (querySnapshot, error) in
+                if let error = error {
+                    print("Error checking for duplicates: \(error)")
+                } else {
+                    if let documents = querySnapshot?.documents, documents.isEmpty {
+                   
+                        // No duplicate found, add the game to favorites
+                        let gameData: [String: Any] = [
+                           
+                            "name": game.name,
+                            "images": game.images.map { image in
+                                return [
+                                    "src": image.src
+                                ]
+                            },
+                            "about": game.about,
+                            "details": game.details.map { detail in
+                                return [
+                                    "key": detail.key ,
+//                                    "values": detail.values.map { value in
+//                                        switch value {
+//                                        case .string(let stringValue):
+//                                            return stringValue
+//                                        case .stringArray(let stringArrayValue):
+//                                            return stringArrayValue.joined(separator: ", ") // Join array elements into a single string
+//                                        }
+//                                    }
+                                ] as [String : Any]
+                            },
+                            "stars": game.stars,
+                            "age": game.age
+                            // Add other game properties here
+                        ]
+
+                        // Add the game data to the "favorites" collection
+                        userFavoritesCollection.addDocument(data: gameData) { error in
+                            if let error = error {
+                                print("Error adding favorite game: \(error)")
+                            } else {
+                                print("Favorite game added successfully!")
                             }
                         }
-
-                    ]
-                },
-                "stars": game.stars,
-                "age": game.age
-                // Add other game properties here
-            ]
-
-            // Add the game data to the "favorites" collection
-            userFavoritesCollection.addDocument(data: gameData) { error in
-                if let error = error {
-                    print("Error adding favorite game: \(error)")
-                } else {
-                    print("Favorite game added successfully!")
+                    } else {
+                        // Duplicate found, handle accordingly (e.g., show an error message)
+                        print("Duplicate game found. You can handle this case here.")
+                    }
                 }
             }
         }
     }
+
 
     
     func fetchFavoriteGames() {
@@ -253,31 +296,68 @@ class UserDataViewModel : ObservableObject {
                 
                 for document in querySnapshot?.documents ?? [] {
                     let data = document.data()
-                    
+                    let id = document.documentID
+//                    let data = change.document.data()
                     // Extract the required fields from the data dictionary
-                    if let id = data["id"] as? String,
-                       let name = data["name"] as? String,
+                    if let name = data["name"] as? String,
                        let about = data["about"] as? String,
-                       let images = data["images"] as? [[String: String]],
-                       let details = data["details"] as? [[String: Any]],
+//                       let images = data["images"] as? [[String: String]],
+                       let details = data["details"] as? [Detail],
                        let stars = data["stars"] as? Int,
                        let age = data["age"] as? String {
                         
                         // Create a GameData instance manually
-                        let game = GameData(id: id, name: name, images: images.map { Image(src: $0["src"] ?? "") }, about: about, details: [], stars: stars, age: age)
+                        let game = GameData(id: id, name: name, images:[] , about: about, details: [], stars: stars, age: age)
                         
                         favoriteGames.append(game)
                     }
                 }
-                
+                favoriteGames = self.removeDuplicates(from: favoriteGames)
                 // Update the @State property here
                 DispatchQueue.main.async {
                     self.favoriteGames = favoriteGames
+//                    print(favoriteGames)
                 }
             }
         }
     }
+    func removeDuplicates(from games: [GameData]) -> [GameData] {
+        var uniqueGames = [GameData]()
+        
+        for game in games {
+            if !uniqueGames.contains(where: { $0.id == game.id }) {
+                uniqueGames.append(game)
+            }
+        }
+        
+        return uniqueGames
+    }
 
+    func deleteFavoriteGame(_ game: GameData) {
+        if let user = Auth.auth().currentUser {
+            print("User ID: \(user.uid)") // Debug: Print user ID
 
+            let userFavoritesCollection = Firestore.firestore().collection("users").document(user.uid).collection("favorites")
 
+            let gameDocRef = userFavoritesCollection.document(game.id)
+            print("game id =", game.id)
+            gameDocRef.delete { error in
+                if let error = error {
+                    print("Error deleting game: \(error)")
+                } else {
+                    print("Game deleted successfully!")
+
+                    // Remove the deleted game from the local favoriteGames array
+                    if let index = self.favoriteGames.firstIndex(where: { $0.name == game.name }) {
+                        self.favoriteGames.remove(at: index)
+                        print("Game removed from local array.")
+                    } else {
+                        print("Game not found in local array.")
+                    }
+                }
+            }
+        } else {
+            print("User is not authenticated")
+        }
+    }
 }

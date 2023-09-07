@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
+    @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         ZStack{
             Rectangle()
@@ -17,32 +18,65 @@ struct GameView: View {
             HStack{
                 VStack(spacing: 4){
 //                    AsyncImage(url: URL(string:"https://source.unsplash.com/250x200/?[videoGame]"))
-                    Image("Game 1")
-                        .scaledToFill()
-                        .frame(width:  180 , height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                }
-                VStack(alignment: .leading){
-                    Text("Final Fantasy XVI")
-                        .bold()
-                        .padding(2)
-                    HStack{
-                        Text("4.0")
-                            .font(.system(size:9))
-                        RatingView(rating: .constant(4))
-                            .font(.system(size:9))
+                    ForEach(gamesData.games, id: \.id) { game in
+                        Image("Game 1")
+                            .scaledToFill()
+                            .frame(width:  180 , height: 200)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                        
+                        VStack(alignment: .leading){
+                            Text(game.name)
+                                .bold()
+                                .padding(2)
+                            HStack{
+                                Text("4.0")
+                                    .font(.system(size:9))
+                                RatingView(rating: .constant(4))
+                                    .font(.system(size:9))
+                            }
+                            .padding(2)
+                            Text(game.age)
+                                .padding(2)
+//                            if game.details.indices.contains(4) {
+//                                                        let detail = game.details[4]
+//                                                        HStack {
+//                                                            Text(detail.key)
+//                                                                .font(.footnote)
+//                                                            Text(detail.values.joined(separator: ", "))
+//                                                                .font(.footnote)
+//                                                        }
+//                                                    }
+                            if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
+                                HStack {
+//                                    Text(releaseDateDetail.key)
+//                                        .font(.footnote)
+                                    Text(releaseDateDetail.values.joined(separator: ", "))
+                                        .font(.footnote)
+                                }
+                            }
+//                                                }
+//                            HStack{
+//                                Text(item.details[4])
+//                                ForEach(item.details.map { (key, value) in
+//                                    return (key: key, value: value)
+//                                }, id: \.key) { detail in
+//                                    Text("PlayStation 5")
+//                                        .font(.footnote)
+//
+////                                    Text(detail.key)
+//                                        .font(.footnote)
+//                                }
+                                    
+                                    
+                                }
+                                
+                            }
+                                
+                            
+                            .padding(2)
+                        }
+                        
                     }
-                    .padding(2)
-                    Text("age 16+")
-                        .padding(2)
-                    HStack{
-                        Text("PlayStation 5")
-                            .font(.footnote)
-                        Text("| 2023")
-                            .font(.footnote)
-                    }
-                    .padding(2)
-                    
                     Button {
                         // do some action
                     } label: {
@@ -60,11 +94,16 @@ struct GameView: View {
                          .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
-                }
+//                }
                 
-            }
-//            .padding()
+//            }
             
+            
+//            .padding()
+                
+        }
+        .onAppear(){
+            gamesData.fetchGames()
         }
         .padding(.horizontal)
     }
@@ -72,6 +111,6 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView().environmentObject(UserDataViewModel())
     }
 }
