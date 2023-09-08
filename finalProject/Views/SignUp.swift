@@ -27,12 +27,12 @@ struct SignUp: View {
             }else{
                 VStack {
                     Spacer()
-                    Text("Create Account")
+                    Text("Text8")
                         .font(Font.custom("BodoniFLF-BoldItalic", size: 34))
                         .padding(.vertical, 40)
            
                     VStack{
-                        TextField("User Name", text: $userName)
+                        TextField("Text9", text: $userName)
                             .padding(.leading)
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
@@ -40,7 +40,7 @@ struct SignUp: View {
                         //                        .keyboardType(.phonePad)
                             .padding(.vertical,8)
                         
-                        TextField("Email. @example.com", text: $email)
+                        TextField("Text10", text: $email)
                             .padding(.leading)
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
@@ -48,14 +48,14 @@ struct SignUp: View {
                             .cornerRadius(7)
                             .padding(.vertical,8)
                         
-                        TextField("Namber", text: $phone)
+                        TextField("Text11", text: $phone)
                             .padding(.leading)
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
                             .cornerRadius(7)
                             .padding(.vertical,10)
                         
-                        SecureField("Password", text: $password)
+                        SecureField("Text12", text: $password)
                             .padding(.leading)
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
@@ -66,7 +66,7 @@ struct SignUp: View {
                         
                         HStack{
                           
-                            SecureField("Confirm Password", text: $repassword)
+                            SecureField("Text13", text: $repassword)
                                       .padding(.leading)
                 
                                 .cornerRadius(7)
@@ -82,7 +82,7 @@ struct SignUp: View {
                         
                         authentication(password, repassword, email)
                     }, label: {
-                        Text("SIGN UP ")
+                        Text("Text15")
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
                             .foregroundColor(.white)
@@ -90,12 +90,12 @@ struct SignUp: View {
                     }).padding(.vertical, 40)
                     Spacer()
                     HStack{
-                        Text("Do you have account?")
+                        Text("Text14")
                         Button(action: {
                             //                    SignUp()
                             
                         }, label: {
-                            Text("SIGN IN")
+                            Text("Text7")
                         })
                         
                     }
