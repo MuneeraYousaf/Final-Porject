@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  finalProject copy
+
+  Created by Afrah Faisal on 23/02/1445 AH.
+  
+*/
+
+// Account Page
+"name"="اسم المستخدم";
+"name email"="البريد الإلكتروني";
+"number"="الجوال";
+
+// List Page
+//"name list"="قائمتي";
+
+// Log In Page
+"Text1"="البريد الإلكتروني";
+"Text2"="كلمة المرور";
+"Text3"="تسجيل الدخول";
+"Text4"="مستخدم جديد؟";
+"Text5"="تسجيل جديد";
+"Text6"="الأستمرار كضيف";
+
+
+// Create Account Page
+"Text7"="تسجيل دخول";
+"Text8"="إنشاء حساب";
+"Text9"="اسم المستخدم";
+"Text10"="البريد الإلكتروني";
+"Text11"="رقم الجوال";
+"Text12"="كلمة المرور";
+"Text13"="تأكيد كلمة المرور";
+"Text14"="هل لديك حساب؟";
+"Text15"="تسجيل جديد";
+
+// Home Page
+"Text search"="البحث عن اللعبة...";
+"Text categories"="فئات -";
+"Text all"="الجميع";
+"Text action"="action";
+"Text adventure"="adventure";
+"Text sports"="sports";
+"Text Platforms"="المنصات -";
+"Text Xbox"="Xbox";
+"Text Windows"="Windows";
+"Text NintendoSwitch"="NintendoSwitch";
+"Text PlayStation"="PlayStation";
+
+// Details Page
+"Text About"="وصف اللعبة";
+"Text Reviews"="التعليقات";
+"Text Details"="تفاصيل اللعبة";
+"Text Seeall"="عرض المزيد";
+
+// Comment Page
+"Text rating"="إضافة تقييم";

@@ -9,7 +9,45 @@ import SwiftUI
 
 struct ListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        //   صفحه قائمه الالعاب المفضله
+        VStack{
+            HStack{
+                //                    Image(systemName: "line.3.horizontal")
+                //                        .frame(width: 21, height: 21)
+                //                        .foregroundColor(.black)
+                //                        .padding(.horizontal,16)
+                //                        .padding(.vertical,8)
+//                Text("my List")
+//                    .font(
+//                        Font.custom("Saira SemiCondensed", size: 30)
+//                            .weight(.medium)
+//                    )
+//                    .foregroundColor(Color(red: 0.07, green: 0.07, blue: 0.07))
+//                    .frame(maxWidth: .infinity , alignment: .center)
+                //                        .padding(.horizontal , 30)
+                //                    Image("Ellipse 30")
+                //                        .resizable()
+                //                        .frame(width: 50, height: 50)
+                //                        .clipShape(Circle())
+//                AsyncImage(url: URL(string:"https://source.unsplash.com/200x200/?[user]"))
+//                //                    .resizable()
+//                    .frame(width: 50, height: 50)
+//                    .clipShape(Circle())
+            }
+            .padding(.horizontal)
+            .padding(.top)
+            Spacer()
+            ScrollView{
+                VStack{
+                    
+                    GameComponentView()
+                    GameComponentView()
+                    GameComponentView()
+                    GameComponentView()
+                    GameComponentView()
+                }
+            }
+        }
     }
 }
 
