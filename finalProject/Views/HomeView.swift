@@ -42,7 +42,7 @@ struct HomeView: View {
 //                .padding(.horizontal)
                 // Search Text Field
                 VStack{
-                    TextField("Search Game..", text: $searchedText)
+                    TextField("Text search", text: $searchedText)
                         .padding()
                         .frame(height:40)
                         .background(Color(white: 0.97))
@@ -50,31 +50,31 @@ struct HomeView: View {
                         
                 }.padding(.horizontal)
                 HStack{
-                    Text("Categories -")
+                    Text("Text categories")
                         .foregroundColor(.gray)
                     Picker("", selection: $gametype) {
-                        Text("All")
+                        Text("Text all")
                             .tag(GameType.all)
-                        Text("action")
+                        Text("Text action")
                             .tag(GameType.action)
-                        Text("adventure")
+                        Text("Text adventure")
                             .tag(GameType.adventure)
-                        Text("sports")
+                        Text("Text sports")
                             .tag(GameType.sports)
                     }
                     .pickerStyle(.menu)
                     .accentColor(.black)
-                    Text("Platforms -")
+                    Text("Text Platforms")
                         .foregroundColor(.gray)
 
                     Picker("", selection: $platforms) {
-                        Text("PlayStation")
+                        Text("Text PlayStation")
                             .tag(PlatForm.PlayStation)
-                        Text("NintendoSwitch")
+                        Text("Text NintendoSwitch")
                             .tag(PlatForm.NintendoSwitch)
-                        Text("Windows")
+                        Text("Text Windows")
                             .tag(PlatForm.Windows)
-                        Text("Xbox")
+                        Text("Text Xbox")
                             .tag(PlatForm.Xbox)
                     }
                     .pickerStyle(.menu)

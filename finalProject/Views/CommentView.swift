@@ -39,7 +39,7 @@ struct CommentView: View {
                         Button {
                             // do some action
                         } label: {
-                            Text("Add rating")
+                            Text("Text rating")
     //                         .padding()
                                 .frame(width: 100,height: 30)
                              .foregroundColor(.white)

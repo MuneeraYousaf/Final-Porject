@@ -38,7 +38,7 @@ struct DetailsGameView: View {
                 
                 VStack{
                     //GameDescription
-                    Text("About")
+                    Text("Text About")
                         .font(Font.custom("Saira SemiCondensed", size: 20))
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -50,7 +50,7 @@ FINAL FANTASY XVI gives players an entirely new world and cast of characters set
                     .font(Font.custom("Saira SemiCondensed", size: 12))
                     .fontWeight(.regular)
                     
-                    Text("Game Details")
+                    Text("Text Details")
                         .font(Font.custom("Saira SemiCondensed", size: 20))
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -81,7 +81,7 @@ FINAL FANTASY XVI gives players an entirely new world and cast of characters set
                         .fontWeight(.regular)
                         .frame(maxWidth: .infinity,alignment: .leading)
                         .padding(2)
-                    Text("Reviews")
+                    Text("Text Reviews")
                         .font(Font.custom("Saira SemiCondensed", size: 20))
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -122,7 +122,7 @@ FINAL FANTASY XVI gives players an entirely new world and cast of characters set
                     Spacer()
                     NavigationLink(
                         destination: CommentView()) {
-                            Text("See all review >")
+                            Text("Text Seeall")
 //                            Image(systemName: "arrow.right.square")
                         }.buttonStyle(.plain)
                         
