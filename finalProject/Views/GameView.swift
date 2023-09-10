@@ -25,7 +25,8 @@ struct GameView: View {
                                 .font(.system(size: 20))
                                 .bold()
                                 .padding(2)
-                                .frame(width: 110)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                                .multilineTextAlignment(.leading)
                             HStack {
 //                                Text("4.0")
 //                                    .font(.system(size: 9))
@@ -45,20 +46,29 @@ struct GameView: View {
                         }
                         .padding(2)
                         
-                        Button(action: {
-                            gamesData.addFavoriteGame(game)
-                        }) {
-                            Text("+")
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.white)
-                                .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
-                                .overlay(RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
-                                .cornerRadius(16)
-                        }
                         
                     }
-                }.frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Button(action: {
+                                gamesData.addFavoriteGame(game)
+                            }) {
+                                Image(systemName: "heart")
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.white)
+                                    .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
+                                    .overlay(RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
+                                    .cornerRadius(16)
+                            }
+                            Spacer()
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal)
             }
         }
