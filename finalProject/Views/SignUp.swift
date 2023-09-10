@@ -16,101 +16,109 @@ struct SignUp: View {
     @State var password: String = ""
     @State var repassword: String = ""
     @State var showNextPage: Bool = false
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userData: UserDataViewModel
     var body: some View {
-        
-        ZStack{
-            BackgroundView()
-            if showNextPage == true{
-                
-                Text("hello")
-            }else{
-                VStack {
-                    Spacer()
-                    Text("Text8")
-                        .font(Font.custom("BodoniFLF-BoldItalic", size: 34))
-                        .padding(.vertical, 40)
-           
-                    VStack{
-                        TextField("Text9", text: $userName)
-                            .padding(.leading)
-                            .frame(width: 360, height: 60)
-                            .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
-                            .cornerRadius(7)
-                        //                        .keyboardType(.phonePad)
-                            .padding(.vertical,8)
+//        NavigationView{
+            ZStack{
+                BackgroundView()
+                if showNextPage == true{
+                    
+                    Text("hello")
+                }else{
+                    VStack {
+                        Spacer()
+                        Text("Text8")
+                            .font(Font.custom("BodoniFLF-BoldItalic", size: 34))
+                            .padding(.vertical, 40)
                         
-                        TextField("Text10", text: $email)
-                            .padding(.leading)
-                            .frame(width: 360, height: 60)
-                            .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
-                        
-                            .cornerRadius(7)
-                            .padding(.vertical,8)
-                        
-                        TextField("Text11", text: $phone)
-                            .padding(.leading)
-                            .frame(width: 360, height: 60)
-                            .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
-                            .cornerRadius(7)
-                            .padding(.vertical,10)
-                        
-                        SecureField("Text12", text: $password)
-                            .padding(.leading)
-                            .frame(width: 360, height: 60)
-                            .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
-                            .cornerRadius(7)
-                            .padding(.vertical,8)
-                        
-                        
-                        
-                        HStack{
-                          
-                            SecureField("Text13", text: $repassword)
-                                      .padding(.leading)
-                
+                        VStack{
+                            TextField("Text9", text: $userName)
+                                .padding(.leading)
+                                .frame(width: 360, height: 60)
+                                .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
+                                .cornerRadius(7)
+                            //                        .keyboardType(.phonePad)
+                                .padding(.vertical,8)
+                            
+                            TextField("Text10", text: $email)
+                                .padding(.leading)
+                                .frame(width: 360, height: 60)
+                                .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
+                            
                                 .cornerRadius(7)
                                 .padding(.vertical,8)
-//                            Image(systemName: "person").frame(maxWidth: .infinity, alignment:.trailing).padding(.horizontal)
-                        }     .frame(width: 360, height: 60)
-                            .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
-                        
-                    }
-                    .padding(.vertical,23)
-                   
-                    Button(action: {
-                        
-                        authentication(password, repassword, email)
-                    }, label: {
-                        Text("Text15")
-                            .frame(width: 360, height: 60)
-                            .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
-                            .foregroundColor(.white)
-                            .cornerRadius(16)
-                    }).padding(.vertical, 40)
-                    Spacer()
-                    HStack{
-                        Text("Text14")
-                        Button(action: {
-                            //                    SignUp()
                             
+                            TextField("Text11", text: $phone)
+                                .padding(.leading)
+                                .frame(width: 360, height: 60)
+                                .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
+                                .cornerRadius(7)
+                                .padding(.vertical,10)
+                            
+                            SecureField("Text12", text: $password)
+                                .padding(.leading)
+                                .frame(width: 360, height: 60)
+                                .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
+                                .cornerRadius(7)
+                                .padding(.vertical,8)
+                            
+                            
+                            
+                            HStack{
+                                
+                                SecureField("Text13", text: $repassword)
+                                    .padding(.leading)
+                                
+                                    .cornerRadius(7)
+                                    .padding(.vertical,8)
+                                //                            Image(systemName: "person").frame(maxWidth: .infinity, alignment:.trailing).padding(.horizontal)
+                            }     .frame(width: 360, height: 60)
+                                .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
+                            
+                        }
+                        .padding(.vertical,23)
+                        
+                        Button(action: {
+                            
+                            authentication(password, repassword, email)
                         }, label: {
-                            Text("Text7")
-                        })
+                            Text("Text15")
+                                .frame(width: 360, height: 60)
+                                .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
+                                .foregroundColor(.white)
+                                .cornerRadius(16)
+                        }).padding(.vertical, 40)
+                        Spacer()
+                        HStack{
+                            Text("Text14")
+                                Button(action: {
+                                //                    SignUp()
+                            dismiss()
+                                }, label: {
+                                Text("Text7")
+                                })
+//                            NavigationLink(
+//                                destination: SignIn() ) {
+//                                    Text("Text7")
+//                                    //                            Image(systemName: "arrow.right.square")
+//                                }
+//                            //                            .buttonStyle(.plain)
+//                                .foregroundColor(.blue)
+//                        }
+                        //                    Button(action: {
+                        //                        //                    SignUp()
+                        //
+                        //                    }, label: {
+                        //                        Text("Centnue as Gusst").foregroundColor(.black)
+                        //                    })
                         
                     }
-//                    Button(action: {
-//                        //                    SignUp()
-//
-//                    }, label: {
-//                        Text("Centnue as Gusst").foregroundColor(.black)
-//                    })
                     
                 }
-                
             }
         }
-        
+                    .navigationBarBackButtonHidden(true)
     }
     // Function for user registration (sign-up) using email and password
     func signUp(_ email: String, _ pass: String) {

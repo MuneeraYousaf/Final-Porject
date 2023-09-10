@@ -11,10 +11,10 @@ struct ProfileView: View {
     @EnvironmentObject var users: UserDataViewModel
     @State var showNextPage: Bool = false
     var body: some View {
-        ForEach(users.users, id: \.id){
-            i in
-            Text(i.email)
-        }
+//        ForEach(users.users, id: \.id){
+//            i in
+//            Text(i.email)
+//        }
         @Environment(\.locale) var locale
         NavigationStack{
             TabView{
@@ -54,7 +54,11 @@ struct ProfileView: View {
                                 .clipShape(Circle())
                     }
                         .padding()
-                    Text("Afrah")
+//                    Text("Afrah")
+                    ForEach(users.users, id: \.id){
+                                i in
+                        Text(i.username)
+                            }
                         .font(Font.custom("Saira SemiCondensed", size: 30)
                             .weight(.medium)
                         )
@@ -67,9 +71,15 @@ struct ProfileView: View {
                                 .foregroundColor(.black)
                             //                        .padding()
                             Spacer()
-                            Text("AdomShafi007")
-                                .font(Font.custom("Saira SemiCondensed", size: 18))
-                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+                            ForEach(users.users, id: \.id){
+                                i in
+                                Text(i.username)
+                                    .font(Font.custom("Saira SemiCondensed", size: 18))
+                                  .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+                            }
+//                            Text("AdomShafi007")
+//                                .font(Font.custom("Saira SemiCondensed", size: 18))
+//                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
                         }
                         //                .frame(maxWidth: .infinity , alignment : .leading)
                         .padding(.vertical)
@@ -79,10 +89,17 @@ struct ProfileView: View {
                                 .foregroundColor(.black)
                             //                        .padding(12)
                             Spacer()
-                            Text("adomshafi007@gmail.com")
-                                .font(Font.custom("Saira SemiCondensed", size: 18))
+                            ForEach(users.users, id: \.id){
+                                i in
+                                Text(i.email)
+                                  .font(Font.custom("Saira SemiCondensed", size: 18))
                                 .multilineTextAlignment(.trailing)
                                 .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+                            }
+//                            Text("adomshafi007@gmail.com")
+//                                .font(Font.custom("Saira SemiCondensed", size: 18))
+//                                .multilineTextAlignment(.trailing)
+//                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
                         }
                         //                .frame(maxWidth: .infinity , alignment : .leading)
                         .padding(.vertical)
@@ -92,10 +109,17 @@ struct ProfileView: View {
                                 .foregroundColor(Color(red: 0.07, green: 0.07, blue: 0.07))
                             //                        .padding(12)
                             Spacer()
-                            Text("+8801704889390")
-                                .font(Font.custom("Saira SemiCondensed", size: 18))
-                                .multilineTextAlignment(.trailing)
-                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+                            ForEach(users.users, id: \.id){
+                                i in
+                                Text(i.phone)
+                                    .font(Font.custom("Saira SemiCondensed", size: 18))
+                                       .multilineTextAlignment(.trailing)
+                                       .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+                            }
+//                            Text("+8801704889390")
+//                                .font(Font.custom("Saira SemiCondensed", size: 18))
+//                                .multilineTextAlignment(.trailing)
+//                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
                         }
                         //                .frame(maxWidth: .infinity , alignment : .leading)
                         .padding(.vertical)

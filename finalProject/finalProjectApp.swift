@@ -16,17 +16,18 @@ struct finalProjectApp: App {
     }
     var body: some Scene {
         WindowGroup {
-//            SignUp()
-//            RootView()
-//            GamesListView().environmentObject(UserData)
-//            mainView()
-//            AddCommentView().environmentObject(UserData)
-            SplashScreenView().environmentObject(UserData)
-//            ProfileView()
-//            FavoritesView().environmentObject(UserData)
-            
-//            mainView()
-            
+//            NavigationView{
+                //            SignUp()
+                //            RootView()
+                //            GamesListView().environmentObject(UserData)
+                //            mainView()
+                //            AddCommentView().environmentObject(UserData)
+                SplashScreenView().environmentObject(UserData)
+                //            ProfileView()
+                //            FavoritesView().environmentObject(UserData)
+                
+                //            mainView()
+//            }
         }
     }
 }
