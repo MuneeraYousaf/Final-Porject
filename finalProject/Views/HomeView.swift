@@ -32,12 +32,12 @@ struct HomeView: View {
                         .frame(width: 60, height: 40, alignment: .center)
                         .padding(-5)
                     Text("Games Vault")
-//                        .font(
-//                             .custom(
-//                             "SairaSemiCondensed",
-//                             fixedSize: 34)
-//                             .weight(.medium)
-//
+                        .font(
+                             .custom(
+                             "SairaSemiCondensed-SemiBold",
+                             fixedSize: 20)
+                             .weight(.medium)
+)
 //                         )
                         .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-10)
 //                    Spacer()
@@ -140,10 +140,10 @@ struct HomeView: View {
 //                                        withAnimation(.spring()) {
 //                                            show.toggle()
 //                                        }
-//                                    }
-                } .onAppear(){
-                    gamesData.fetchGames()
-                }
+                                    }
+//                } .onAppear(){
+//                    gamesData.fetchGames()
+//                }
         var filteredGames: [GameData] {
             var filteredGames = gamesData.games
             
