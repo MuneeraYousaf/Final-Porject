@@ -15,7 +15,7 @@ class UserDataViewModel : ObservableObject {
     @Published var users: [UserModel] = []
     @Published var games: [GameData] = []
     @Published var favoriteGames: [GameData] = []
-    
+    @Published var comments: [Comment] = []
     //MARK: Add user to firebase
     func addUser(username: String, email: String, phone: String, image: String) {
         // Create a dictionary with the user data.
@@ -81,98 +81,6 @@ class UserDataViewModel : ObservableObject {
                 }
             }
     }
-   
-    
-//    func fetchGames() {
-//        Firestore.firestore()
-//            .collection("games")
-//            .addSnapshotListener { snapshot, error in
-//                if let error = error {
-//                    print("Error fetching users: \(error)")
-//                    return
-//                }
-//
-//                if let snapshot = snapshot {
-//                    snapshot.documentChanges.forEach { change in
-//                        DispatchQueue.main.async {
-//                            let id = change.document.documentID
-//                            let data = change.document.data()
-//
-//                            let gamefetch = GameData(id: id, name: data["name"] as? String ?? "", images: data["images"] as? Array<Image> ?? [], about: data["about"] as? String ?? "", details: data["name"] as? Array<Detail> ?? [], stars: data["stars"] as? Int ?? 0, age: data["age"] as? String ?? "")
-//                            //                            UserModel(
-//                            //                                id: id,
-//                            //                                username: data["username"] as? String ?? "",
-//                            //                                image: data["image"] as? String ?? "",
-//                            //                                phone: data["phone"] as? String ?? "",
-//                            //                                email: data["email"] as? String ?? ""
-//                            //                            )
-//
-//
-//                            switch change.type {
-//                            case .added:
-//                                // Append the new user to the array
-//                                self.users.append(gamefetch)
-//                            case .modified:
-//                                // Update the user in the array if it exists
-//                                if let index = self.users.firstIndex(where: { $0.id == newUser.id }) {
-//                                    self.users[index] = gamefetch
-//                                }
-//                            case .removed:
-//                                // Handle the removal of a user if needed
-//                                self.users.removeAll { $0.id == gamefetch.id }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//
-//    func fetchGames() {
-//        // Create a reference to the Firestore "games" collection
-//        let gamesCollection = Firestore.firestore().collection("games")
-//
-//        // Add a snapshot listener to the collection to listen for changes
-//        gamesCollection.addSnapshotListener { querySnapshot, error in
-//            if let error = error {
-//                // Handle and print any errors that occur during the fetch
-//                print("Error fetching documents: \(error)")
-//                return
-//            }
-//
-//            // Check if there are any documents in the query snapshot
-//            guard let documents = querySnapshot?.documents else {
-//                // If there are no documents, print a message and return
-//                print("No documents")
-//                return
-//            }
-//
-//            // Use compactMap to process each document in the snapshot
-//            self.games = documents.compactMap { document in
-//                do {
-//                    // Try to extract the document data as a dictionary
-//                    if let data = document.data() as? [String: Any] {
-//                        // Convert the dictionary data to JSON data
-//                        let jsonData = try JSONSerialization.data(withJSONObject: data)
-//
-//                        // Create a JSON decoder
-//                        let decoder = JSONDecoder()
-//
-//                        // Attempt to decode the JSON data into a GameData object
-//                        let game = try decoder.decode(GameData.self, from: jsonData)
-//
-//                        // Return the decoded GameData object
-//                        return game
-//                    } else {
-//                        // If data couldn't be extracted or decoded, return nil
-//                        return nil
-//                    }
-//                } catch {
-//                    // Handle any errors that occur during decoding and print an error message
-//                    print("Error decoding game data: \(error)")
-//                    return nil
-//                }
-//            }
-//        }
-//    }
 
     
     func fetchGames() {
@@ -302,7 +210,7 @@ class UserDataViewModel : ObservableObject {
                     if let name = data["name"] as? String,
                        let about = data["about"] as? String,
 //                       let images = data["images"] as? [[String: String]],
-                       let details = data["details"] as? [Detail],
+//                       let details = data["details"] as? [Detail],
                        let stars = data["stars"] as? Int,
                        let age = data["age"] as? String {
                         
@@ -360,4 +268,28 @@ class UserDataViewModel : ObservableObject {
             print("User is not authenticated")
         }
     }
+
+    func addComment(_ comment: Comment) {
+        let db = Firestore.firestore()
+
+        db.collection("comments").addDocument(data: [
+            "userID": comment.userID,
+            "gameID": comment.gameID,
+            "text": comment.text,
+            "rating": comment.rating
+        ]) { error in
+            if let error = error {
+                print("Error adding comment: \(error)")
+            } else {
+                print("Comment added successfully!")
+            }
+        }
+    }
+ 
+
+        
+
+   
 }
+
+

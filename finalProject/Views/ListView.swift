@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ListView: View {
+    @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
-        //   صفحه قائمه الالعاب المفضله
-        VStack{
-            HStack{
+//        //   صفحه قائمه الالعاب المفضله
+//        VStack{
+//            HStack{
                 //                    Image(systemName: "line.3.horizontal")
                 //                        .frame(width: 21, height: 21)
                 //                        .foregroundColor(.black)
@@ -33,20 +34,38 @@ struct ListView: View {
 //                //                    .resizable()
 //                    .frame(width: 50, height: 50)
 //                    .clipShape(Circle())
-            }
-            .padding(.horizontal)
-            .padding(.top)
-            Spacer()
+//            }
+//            .padding(.horizontal)
+//            .padding(.top)
+//            Spacer()
             ScrollView{
                 VStack{
+                    ForEach(gamesData.favoriteGames, id: \.id) { game in
+//                        Text(game.name)
+                        //                        NavigationLink(
+                        ////                            destination: {
+                        //                                DetailsGameView(game: game)
+                        //                            }, label: {
+                        GameComponentView(game:game)
+                        .frame(width: .infinity, height: 200)}
+                    //                        )
+                    //                    }
                     
-                    GameComponentView()
-                    GameComponentView()
-                    GameComponentView()
-                    GameComponentView()
-                    GameComponentView()
+                    
+                    
+//                    List(gamesData.favoriteGames, id: \.id) { game in
+//                        Text(game.name)
+//                        Button( action: {
+//                            gamesData.deleteFavoriteGame(game)
+//                        },label:  {
+//                            Text("Delete")
+//                                .foregroundColor(.red)
+//                        })
+//                    }
                 }
-            }
+//            }
+        }.onAppear(){
+            gamesData.fetchFavoriteGames()
         }
     }
 }

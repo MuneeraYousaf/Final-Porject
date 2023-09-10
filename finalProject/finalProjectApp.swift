@@ -19,8 +19,9 @@ struct finalProjectApp: App {
 //            SignUp()
 //            RootView()
 //            GamesListView().environmentObject(UserData)
-            mainView().environmentObject(UserData)
-            
+//            mainView()
+//            AddCommentView().environmentObject(UserData)
+            SplashScreenView().environmentObject(UserData)
 //            ProfileView()
 //            FavoritesView().environmentObject(UserData)
             
