@@ -40,7 +40,7 @@
 "Text action"="action";
 "Text adventure"="adventure";
 "Text sports"="sports";
-"Text Platforms"="Platforms -";
+"Text Platforms"="Age -";
 "Text Xbox"="Xbox";
 "Text Windows"="Windows";
 "Text NintendoSwitch"="NintendoSwitch";
@@ -51,7 +51,7 @@
 "Text About"="About";
 "Text Reviews"="Reviews";
 "Text Details"="Game Details";
-"Text Seeall"="See all review >";
+"Text Seeall"="See All review >";
 
 // Comment Page
 "Text rating"="Add rating";
