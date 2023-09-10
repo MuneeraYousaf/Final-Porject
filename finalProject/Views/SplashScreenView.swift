@@ -11,10 +11,12 @@ struct SplashScreenView: View {
     @State var isActive : Bool = false
        @State private var size = 0.8
        @State private var opacity = 0.5
-       
+    @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         if isActive {
-            mainView()
+            mainView().onAppear(
+                perform: gamesData.fetchGames
+            )
         } else {
             ZStack {
 

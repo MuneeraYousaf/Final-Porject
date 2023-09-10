@@ -14,10 +14,21 @@
 		1A7D57A12A9FDC0400B82DBD /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D57A02A9FDC0400B82DBD /* SignIn.swift */; };
 		1A7D57A32A9FDCBC00B82DBD /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D57A22A9FDCBB00B82DBD /* BackgroundView.swift */; };
 		1A7D57A52AA07CE500B82DBD /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D57A42AA07CE500B82DBD /* SignUp.swift */; };
-		1A7D57A92AA088D400B82DBD /* bodoni in Resources */ = {isa = PBXBuildFile; fileRef = 1A7D57A82AA088D400B82DBD /* bodoni */; };
 		1A7D57AD2AA2978B00B82DBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A7D57AC2AA2978A00B82DBD /* GoogleService-Info.plist */; };
 		1A7D57AF2AA3D74B00B82DBD /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D57AE2AA3D74B00B82DBD /* UserDataViewModel.swift */; };
 		1A7D57B32AA5329B00B82DBD /* gamesv2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A7D57B22AA5329B00B82DBD /* gamesv2.json */; };
+		1ACA54342AACA05700F5CB7D /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA54332AACA05700F5CB7D /* Comments.swift */; };
+		1ACA54352AAD4AB700F5CB7D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF8E612AA9AE3B008954B5 /* HomeView.swift */; };
+		1ACA54422AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA54382AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf */; };
+		1ACA54432AAD4C9D00F5CB7D /* SairaSemiCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA54392AAD4C9D00F5CB7D /* SairaSemiCondensed-Bold.ttf */; };
+		1ACA54442AAD4C9D00F5CB7D /* SairaSemiCondensed-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA543A2AAD4C9D00F5CB7D /* SairaSemiCondensed-Thin.ttf */; };
+		1ACA54452AAD4C9D00F5CB7D /* SairaSemiCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA543B2AAD4C9D00F5CB7D /* SairaSemiCondensed-Regular.ttf */; };
+		1ACA54462AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA543C2AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraBold.ttf */; };
+		1ACA54472AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA543D2AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraLight.ttf */; };
+		1ACA54482AAD4C9D00F5CB7D /* SairaSemiCondensed-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA543E2AAD4C9D00F5CB7D /* SairaSemiCondensed-SemiBold.ttf */; };
+		1ACA544A2AAD4C9D00F5CB7D /* SairaSemiCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA54402AAD4C9D00F5CB7D /* SairaSemiCondensed-Light.ttf */; };
+		1ACA544B2AAD4CE200F5CB7D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA543F2AAD4C9D00F5CB7D /* OFL.txt */; };
+		1ACA544C2AAD4E5C00F5CB7D /* SairaSemiCondensed-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA544E2AAD4E5C00F5CB7D /* SairaSemiCondensed-Black.ttf */; };
 		1AF4901E2A9E8BB9005DBE6A /* finalProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4901D2A9E8BB9005DBE6A /* finalProjectApp.swift */; };
 		1AF490202A9E8BB9005DBE6A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4901F2A9E8BB9005DBE6A /* RootView.swift */; };
 		1AF490222A9E8BBB005DBE6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AF490212A9E8BBB005DBE6A /* Assets.xcassets */; };
@@ -29,7 +40,6 @@
 		1AF490382A9E8F8B005DBE6A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1AF490372A9E8F8B005DBE6A /* FirebaseFirestoreSwift */; };
 		1AF4903A2A9E8F8B005DBE6A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1AF490392A9E8F8B005DBE6A /* FirebaseStorage */; };
 		1AF4903C2A9E8F8B005DBE6A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1AF4903B2A9E8F8B005DBE6A /* FirebaseStorageCombine-Community */; };
-		1AFF8E692AA9AE3C008954B5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF8E612AA9AE3B008954B5 /* HomeView.swift */; };
 		1AFF8E6A2AA9AE3C008954B5 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF8E622AA9AE3C008954B5 /* CommentView.swift */; };
 		1AFF8E6B2AA9AE3C008954B5 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF8E632AA9AE3C008954B5 /* ListView.swift */; };
 		1AFF8E6C2AA9AE3C008954B5 /* DetailsGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF8E642AA9AE3C008954B5 /* DetailsGameView.swift */; };
@@ -47,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A5208322AADD6E60027859B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A6DA2192AA671070030F6A2 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		1A6DA21B2AA674760030F6A2 /* GamesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesData.swift; sourceTree = "<group>"; };
 		1A7D579C2A9E9EB200B82DBD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -54,16 +65,28 @@
 		1A7D57A02A9FDC0400B82DBD /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		1A7D57A22A9FDCBB00B82DBD /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		1A7D57A42AA07CE500B82DBD /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
-		1A7D57A82AA088D400B82DBD /* bodoni */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bodoni; sourceTree = "<group>"; };
 		1A7D57AC2AA2978A00B82DBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A7D57AE2AA3D74B00B82DBD /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		1A7D57B22AA5329B00B82DBD /* gamesv2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gamesv2.json; sourceTree = "<group>"; };
+		1ACA54332AACA05700F5CB7D /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		1ACA54382AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Medium.ttf"; sourceTree = "<group>"; };
+		1ACA54392AAD4C9D00F5CB7D /* SairaSemiCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		1ACA543A2AAD4C9D00F5CB7D /* SairaSemiCondensed-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Thin.ttf"; sourceTree = "<group>"; };
+		1ACA543B2AAD4C9D00F5CB7D /* SairaSemiCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		1ACA543C2AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-ExtraBold.ttf"; sourceTree = "<group>"; };
+		1ACA543D2AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-ExtraLight.ttf"; sourceTree = "<group>"; };
+		1ACA543E2AAD4C9D00F5CB7D /* SairaSemiCondensed-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-SemiBold.ttf"; sourceTree = "<group>"; };
+		1ACA543F2AAD4C9D00F5CB7D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		1ACA54402AAD4C9D00F5CB7D /* SairaSemiCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Light.ttf"; sourceTree = "<group>"; };
+		1ACA544D2AAD4E5C00F5CB7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = "Base.lproj/SairaSemiCondensed-Black.ttf"; sourceTree = "<group>"; };
+		1ACA544F2AAD4E6800F5CB7D /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/SairaSemiCondensed-Black.ttf"; sourceTree = "<group>"; };
+		1ACA54502AAD4E6900F5CB7D /* ar */ = {isa = PBXFileReference; lastKnownFileType = file; name = ar; path = "ar.lproj/SairaSemiCondensed-Black.ttf"; sourceTree = "<group>"; };
 		1AF4901A2A9E8BB9005DBE6A /* finalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = finalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF4901D2A9E8BB9005DBE6A /* finalProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finalProjectApp.swift; sourceTree = "<group>"; };
 		1AF4901F2A9E8BB9005DBE6A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		1AF490212A9E8BBB005DBE6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AF490242A9E8BBB005DBE6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1AFF8E612AA9AE3B008954B5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1AFF8E612AA9AE3B008954B5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 0; wrapsLines = 1; };
 		1AFF8E622AA9AE3C008954B5 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		1AFF8E632AA9AE3C008954B5 /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		1AFF8E642AA9AE3C008954B5 /* DetailsGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsGameView.swift; sourceTree = "<group>"; };
@@ -98,9 +121,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1ACA54362AAD4C9D00F5CB7D /* Saira_Semi_Condensed */ = {
+			isa = PBXGroup;
+			children = (
+				1ACA544E2AAD4E5C00F5CB7D /* SairaSemiCondensed-Black.ttf */,
+				1ACA54382AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf */,
+				1ACA54392AAD4C9D00F5CB7D /* SairaSemiCondensed-Bold.ttf */,
+				1ACA543A2AAD4C9D00F5CB7D /* SairaSemiCondensed-Thin.ttf */,
+				1ACA543B2AAD4C9D00F5CB7D /* SairaSemiCondensed-Regular.ttf */,
+				1ACA543C2AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraBold.ttf */,
+				1ACA543D2AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraLight.ttf */,
+				1ACA543E2AAD4C9D00F5CB7D /* SairaSemiCondensed-SemiBold.ttf */,
+				1ACA543F2AAD4C9D00F5CB7D /* OFL.txt */,
+				1ACA54402AAD4C9D00F5CB7D /* SairaSemiCondensed-Light.ttf */,
+			);
+			name = Saira_Semi_Condensed;
+			path = finalProject/Saira_Semi_Condensed;
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
 		1AF490112A9E8BB9005DBE6A = {
 			isa = PBXGroup;
 			children = (
+				1ACA54362AAD4C9D00F5CB7D /* Saira_Semi_Condensed */,
 				1AF4901C2A9E8BB9005DBE6A /* finalProject */,
 				1AF4901B2A9E8BB9005DBE6A /* Products */,
 			);
@@ -117,9 +160,9 @@
 		1AF4901C2A9E8BB9005DBE6A /* finalProject */ = {
 			isa = PBXGroup;
 			children = (
+				1A5208322AADD6E60027859B /* Info.plist */,
 				E0DEE5AA2AABCEF200E3D9C2 /* en.lproj */,
 				E0DEE5A62AABCEE300E3D9C2 /* ar.lproj */,
-				1A7D57A82AA088D400B82DBD /* bodoni */,
 				1AF4902D2A9E8E0F005DBE6A /* Models */,
 				1AF4902B2A9E8DFD005DBE6A /* ViewModel */,
 				1AF4902C2A9E8E08005DBE6A /* Views */,
@@ -179,6 +222,7 @@
 				1A7D579C2A9E9EB200B82DBD /* UserModel.swift */,
 				1A7D579E2A9FB7A400B82DBD /* GameComments.swift */,
 				1A6DA21B2AA674760030F6A2 /* GamesData.swift */,
+				1ACA54332AACA05700F5CB7D /* Comments.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,13 +315,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACA54422AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf in Resources */,
+				1ACA544C2AAD4E5C00F5CB7D /* SairaSemiCondensed-Black.ttf in Resources */,
+				1ACA54452AAD4C9D00F5CB7D /* SairaSemiCondensed-Regular.ttf in Resources */,
 				1AF490252A9E8BBB005DBE6A /* Preview Assets.xcassets in Resources */,
+				1ACA54482AAD4C9D00F5CB7D /* SairaSemiCondensed-SemiBold.ttf in Resources */,
+				1ACA54432AAD4C9D00F5CB7D /* SairaSemiCondensed-Bold.ttf in Resources */,
+				1ACA544B2AAD4CE200F5CB7D /* OFL.txt in Resources */,
 				E0DEE5A92AABCEE300E3D9C2 /* Localizable.strings in Resources */,
+				1ACA54472AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraLight.ttf in Resources */,
+				1ACA54462AAD4C9D00F5CB7D /* SairaSemiCondensed-ExtraBold.ttf in Resources */,
 				1A7D57AD2AA2978B00B82DBD /* GoogleService-Info.plist in Resources */,
+				1ACA54442AAD4C9D00F5CB7D /* SairaSemiCondensed-Thin.ttf in Resources */,
 				E0DEE5AD2AABCEF200E3D9C2 /* Localizable.strings in Resources */,
 				1A7D57B32AA5329B00B82DBD /* gamesv2.json in Resources */,
+				1ACA544A2AAD4C9D00F5CB7D /* SairaSemiCondensed-Light.ttf in Resources */,
 				1AF490222A9E8BBB005DBE6A /* Assets.xcassets in Resources */,
-				1A7D57A92AA088D400B82DBD /* bodoni in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +355,6 @@
 				1A6DA21A2AA671070030F6A2 /* test.swift in Sources */,
 				1AFF8E722AA9B2C1008954B5 /* GameModel.swift in Sources */,
 				1AFF8E6E2AA9AE3C008954B5 /* ProfileView.swift in Sources */,
-				1AFF8E692AA9AE3C008954B5 /* HomeView.swift in Sources */,
 				1AFF8E6A2AA9AE3C008954B5 /* CommentView.swift in Sources */,
 				1A6DA21C2AA674760030F6A2 /* GamesData.swift in Sources */,
 				E0DEE5B32AABD77600E3D9C2 /* GameComponentView.swift in Sources */,
@@ -310,13 +362,25 @@
 				1A7D579D2A9E9EB200B82DBD /* UserModel.swift in Sources */,
 				1AF4901E2A9E8BB9005DBE6A /* finalProjectApp.swift in Sources */,
 				1A7D57AF2AA3D74B00B82DBD /* UserDataViewModel.swift in Sources */,
+				1ACA54352AAD4AB700F5CB7D /* HomeView.swift in Sources */,
 				E0DEE5B12AABCFEA00E3D9C2 /* ImageProfileViewModel.swift in Sources */,
+				1ACA54342AACA05700F5CB7D /* Comments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1ACA544E2AAD4E5C00F5CB7D /* SairaSemiCondensed-Black.ttf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1ACA544D2AAD4E5C00F5CB7D /* Base */,
+				1ACA544F2AAD4E6800F5CB7D /* en */,
+				1ACA54502AAD4E6900F5CB7D /* ar */,
+			);
+			name = "SairaSemiCondensed-Black.ttf";
+			sourceTree = "<group>";
+		};
 		E0DEE5A72AABCEE300E3D9C2 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -460,6 +524,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"finalProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = finalProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -488,6 +553,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"finalProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = finalProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

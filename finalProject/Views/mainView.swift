@@ -33,7 +33,7 @@ struct mainView: View {
     }
     @ViewBuilder
     func CustomTabBar(_ tint: Color = Color.white, _ inactiveTint: Color = .gray) ->   some View {
-        HStack(alignment: .bottom){
+        HStack(alignment: .center){
             ForEach(Tab.allCases , id: \.rawValue){
                 TabItem(tint: tint,
                         inactiveTint: inactiveTint,
@@ -71,17 +71,20 @@ struct TabItem: View {
         
         VStack{
             Image(systemName: tab.systemImage)
+                .resizable()
                 .font (.title2)
                 .foregroundColor (activeTab == tab ? .black : .gray)
-                .frame(width: activeTab == tab ? 58 : 35, height: activeTab == tab ? 58: 35)
+                .frame(width: activeTab == tab ? 28 : 24, height: activeTab == tab ? 28: 24)
+                .frame(width: 64, height: 64)
                 .background {
                     if activeTab == tab {
                         Circle()
                             .fill(tint.gradient)
                             .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
-                        
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 }
+
             
             //            Text(tab.rawValue)
             //                .font(.caption)
@@ -110,9 +113,9 @@ enum Tab: String, CaseIterable {
         case .home:
             return "house"
         case .list:
-            return "list.dash"
+            return "heart"
         case .profile:
-            return "person.fill"
+            return "person"
         }
     }
     

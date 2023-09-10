@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GameComponentView: View {
+    var game: GameData
     var body: some View {
         //        VStack{
         //            HStack{
@@ -52,17 +53,17 @@ struct GameComponentView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 16))
                                 }
                                 VStack(alignment: .leading){
-                                    Text("Final Fantasy XVI")
+                                    Text(game.name)
                                         .bold()
                                         .padding(2)
                                     HStack{
-                                        Text("4.0")
-                                            .font(.system(size:9))
-        //                                RatingView(rating: .constant(4))
+//                                        Text("4.0")
+//                                            .font(.system(size:9))
+                                        RatingView(rating: .constant(game.stars))
                                             .font(.system(size:9))
                                     }
                                     .padding(2)
-                                    Text("age 16+")
+                                    Text(game.age)
                                         .padding(2)
                                     HStack{
                                         Text("PlayStation 5")
@@ -100,8 +101,8 @@ struct GameComponentView: View {
         }
   
 
-struct GameComponentView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameComponentView()
-    }
-}
+//struct GameComponentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameComponentView()
+//    }
+//}
