@@ -24,29 +24,29 @@ struct SignIn: View {
 //                    HStack{
 //                    Image(systemName: "swift")
                     Spacer()
-                    TextField("Enter Email", text: $email).padding(.leading)
+                    TextField("Text1", text: $email).padding(.leading)
                         .frame(width: 360, height: 60).background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902)).cornerRadius(7)
                     //                        .padding()
                     //                        .position(x: 200, y: 445)
                         
-                    SecureField("Enter Password", text: $password) .padding(.leading).frame(width: 360, height: 60).background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902)).cornerRadius(7)
+                    SecureField("Text2", text: $password) .padding(.leading).frame(width: 360, height: 60).background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902)).cornerRadius(7)
                     //                SecureField("Enter rePassword", text: $repassword)
                         .padding()
                     Button(action: {
                         //
                         signIn(email, password)
                     }, label: {
-                        Text("Sign in ").frame(width: 360, height: 60).background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684)).foregroundColor(.white)
+                        Text("Text3").frame(width: 360, height: 60).background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684)).foregroundColor(.white)
                             .cornerRadius(16)
                     })
                     Spacer()
                     HStack{
-                        Text("New User?")
+                        Text("Text4")
                         Button(action: {
                             //                    SignUp()
                             
                         }, label: {
-                            Text("SignUp")
+                            Text("Text5")
                         })
                         
                     }
@@ -54,7 +54,7 @@ struct SignIn: View {
                         //                    SignUp()
                         
                     }, label: {
-                        Text("Centnue as Gusst").foregroundColor(.black)
+                        Text("Text6").foregroundColor(.black)
                     })
                     
                 }

@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  finalProject copy
+
+  Created by Afrah Faisal on 23/02/1445 AH.
+  
+*/
+// Account Page
+"name"="User Name";
+"name email"="Email";
+"number"="Phone";
+
+// List Page
+//"name list"="my List";
+
+// SignIn Page
+"Text1"="Enter Email";
+"Text2"="Enter Password";
+"Text3"="Sign in";
+"Text4"="New User?";
+"Text5"="SignUp";
+"Text6"="Centnue as Gusst";
+
+
+// Create Account,SignUp Page
+"Text7"="SIGN IN";
+"Text8"="Create Account";
+"Text9"="User Name";
+"Text10"="Email. @example.com";
+"Text11"="Number";
+"Text12"="Password";
+"Text13"="Confirm Password";
+"Text14"="Do you have account?";
+"Text15"="SIGN UP";
+
+// Home Page
+"Text search"="Search Game...";
+"Text categories"="Categories -";
+"Text all"="All";
+"Text action"="action";
+"Text adventure"="adventure";
+"Text sports"="sports";
+"Text Platforms"="Platforms -";
+"Text Xbox"="Xbox";
+"Text Windows"="Windows";
+"Text NintendoSwitch"="NintendoSwitch";
+"Text PlayStation"="PlayStation";
+
+
+// Details Page
+"Text About"="About";
+"Text Reviews"="Reviews";
+"Text Details"="Game Details";
+"Text Seeall"="See all review >";
+
+// Comment Page
+"Text rating"="Add rating";
