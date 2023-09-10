@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct CommentView: View {
+//    var game: GameData
     @State var Comment = ""
+    @State private var commentText = ""
+    @State private var userRating = 0
     var body: some View {
         ScrollView{
             
@@ -26,7 +29,8 @@ struct CommentView: View {
                         Text("Username")
                         
                     } .frame(maxWidth: .infinity,alignment: .leading)
-                    RatingView(rating: .constant(0))
+//                    RatingView(rating: .constant(0))
+                    RatingViews(rating: $userRating)
                         .font(Font.custom("Saira SemiCondensed", size: 12))
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -35,9 +39,15 @@ struct CommentView: View {
                     .background()
                     Spacer()
                     HStack{
+                    
                         Spacer()
                         Button {
-                            // do some action
+//                            let newComment = Comment(userID: "V3ecxeslnCBp2kQGoHHp", gameID: GameData., text: commentText, rating: userRating)
+//                            userDataViewModel.addComment(newComment)
+
+                            // Clear the comment input and rating
+                            commentText = ""
+                            userRating = 0
                         } label: {
                             Text("Text rating")
     //                         .padding()
@@ -112,8 +122,28 @@ struct CommentView: View {
     }
 }
 
-struct CommentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommentView()
+//struct CommentView_Previews: PreviewProvider {
+////     static var  =game: GameData
+//    static var previews: some View {
+//        CommentView().environmentObject(UserDataViewModel())
+//    }
+//}
+
+struct RatingViews: View {
+    @Binding var rating: Int
+
+    var body: some View {
+        HStack {
+            ForEach(1..<6, id: \.self) { index in
+                Button(action: {
+                    rating = index
+                }) {
+                    Image(systemName: index <= rating ? "star.fill" : "star")
+                        .foregroundColor(.yellow)
+                        .font(.title).frame(width: 20)
+                }
+            }
+        }
     }
 }
+

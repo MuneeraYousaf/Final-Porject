@@ -11,10 +11,10 @@ struct ProfileView: View {
     @EnvironmentObject var users: UserDataViewModel
     @State var showNextPage: Bool = false
     var body: some View {
-//        ForEach(users.users, id: \.id){
-//            i in
-//            Text(i.email)
-//        }
+        ForEach(users.users, id: \.id){
+            i in
+            Text(i.email)
+        }
         @Environment(\.locale) var locale
         NavigationStack{
             TabView{
@@ -135,6 +135,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-//        .environmentObject(UserDataViewModel())
+        .environmentObject(UserDataViewModel())
     }
 }

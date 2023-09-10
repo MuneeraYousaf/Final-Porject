@@ -106,6 +106,33 @@ struct FavoritesView: View {
    
 
 }
+struct AddCommentView: View {
+    @State private var commentText = ""
+    @State private var userRating = 0
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
+    var body: some View {
+        VStack {
+            TextField("Add a comment", text: $commentText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+
+            Text("Rate the game:")
+            RatingViews(rating: $userRating)
+                .padding()
+
+            Button("Add Comment") {
+                // Handle adding the comment and rating to Firestore
+                let newComment = Comment(userID: "V3ecxeslnCBp2kQGoHHp", gameID: "1W49qMfKSrHouwomRqAS", text: commentText, rating: userRating)
+                userDataViewModel.addComment(newComment)
+
+                // Clear the comment input and rating
+                commentText = ""
+                userRating = 0
+            }
+            .padding()
+        }
+    }
+}
 
 
 
