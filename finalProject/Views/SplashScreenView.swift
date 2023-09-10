@@ -14,9 +14,10 @@ struct SplashScreenView: View {
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         if isActive {
-            mainView().onAppear(
-                perform: gamesData.fetchGames
-            )
+//            mainView().onAppear(
+//                perform: gamesData.fetchGames
+//            )
+            SignIn()
         } else {
             ZStack {
 
