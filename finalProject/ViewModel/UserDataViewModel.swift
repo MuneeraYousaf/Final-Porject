@@ -38,11 +38,11 @@ class UserDataViewModel : ObservableObject {
             }
         }
     }
-    
+
     //MARK: Fetch user from firebase
-    func fetchUsers() {
+    func fetchUsers(userID: String) {
         Firestore.firestore()
-            .collection("users")
+            .collection("users").whereField("userID", isEqualTo: userID)
             .addSnapshotListener { snapshot, error in
                 if let error = error {
                     print("Error fetching users: \(error)")

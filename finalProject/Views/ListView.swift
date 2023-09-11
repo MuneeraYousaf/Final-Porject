@@ -100,6 +100,9 @@ struct ListView: View {
         .onAppear(){
             gamesData.fetchFavoriteGames()
         }
+//            .onAppear(){
+//            gamesData.fetchFavoriteGames()
+//        }
     }
 }
 
