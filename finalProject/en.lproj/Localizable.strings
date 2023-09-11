@@ -11,7 +11,7 @@
 "number"="Phone";
 
 // List Page
-//"name list"="my List";
+"name list"="my List";
 
 // SignIn Page
 "Text1"="Enter Email";
@@ -41,10 +41,10 @@
 "Text adventure"="adventure";
 "Text sports"="sports";
 "Text Platforms"="Age -";
-"Text Xbox"="Xbox";
-"Text Windows"="Windows";
-"Text NintendoSwitch"="NintendoSwitch";
-"Text PlayStation"="PlayStation";
+"Text Xbox"="13+";
+"Text Windows"="18+";
+"Text NintendoSwitch"="10+";
+//"Text PlayStation"="PlayStation";
 
 
 // Details Page

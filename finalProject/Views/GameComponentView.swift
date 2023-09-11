@@ -42,61 +42,73 @@ struct GameComponentView: View {
                 ZStack{
                             Rectangle()
                                 .foregroundColor(Color(white: 0.97))
-                                .frame(width: 360,height: 200)
+                                .frame(width: 370,height: 100)
                                 .cornerRadius(16)
                             HStack{
-                                VStack(spacing: 4){
+                                VStack(spacing: 2){
                 //                    AsyncImage(url: URL(string:"https://source.unsplash.com/250x200/?[videoGame]"))
                                     Image("baldurs")
-                                        .scaledToFill()
-                                        .frame(width:  180 , height: 200)
+//                                        .scaledToFill()
+                                        .resizable()
+                                        .frame(width:  90 , height: 90)
                                         .clipShape(RoundedRectangle(cornerRadius: 16))
                                 }
+                                .padding(.trailing)
+                                Divider()
+                                    .background(.gray)
+                                    .frame(height: 75)
                                 VStack(alignment: .leading){
                                     Text(game.name)
+                                        .font(.system(size: 25))
                                         .bold()
                                         .padding(2)
-                                    HStack{
-//                                        Text("4.0")
+//                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+//                                        .multilineTextAlignment(.leading)
+//                                    HStack{
+////                                        Text("4.0")
+////                                            .font(.system(size:9))
+//                                        RatingView(rating: .constant(game.stars))
 //                                            .font(.system(size:9))
-                                        RatingView(rating: .constant(game.stars))
-                                            .font(.system(size:9))
-                                    }
-                                    .padding(2)
-                                    Text(game.age)
-                                        .padding(2)
-                                    HStack{
-                                        Text("PlayStation 5")
-                                            .font(.footnote)
-                                        Text("| 2023")
-                                            .font(.footnote)
-                                    }
-                                    .padding(2)
+//                                    }
+//                                    .padding(2)
+//                                    Text(game.age)
+//                                        .padding(2)
+//                                    HStack{
+//                                        Text("PlayStation 5")
+//                                            .font(.footnote)
+//                                        Text("| 2023")
+//                                            .font(.footnote)
+//                                    }
+//                                    .padding(2)
                                     
-        //                            Button {
-        //                                // do some action
-        //                            } label: {
-        //                                Text("+")
-        //        //                         .padding()
-        //                                    .frame(width: 30,height: 30)
-        //                                 .foregroundColor(.white)
-        //                                 .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
-        //                                 .overlay(RoundedRectangle(cornerRadius: 16)
-        //                                 .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
-        //
-        //                                 .cornerRadius(16)
-        //
-        //        //                         .padding(.trailing)
-        //                                 .frame(maxWidth: .infinity, alignment: .trailing)
-        //                            }
+//                                    Button {
+//                                        // do some action
+//                                    } label: {
+//                                        Text("+")
+//                //                         .padding()
+//                                            .frame(width: 30,height: 30)
+//                                         .foregroundColor(.white)
+//                                         .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
+//                                         .overlay(RoundedRectangle(cornerRadius: 16)
+//                                         .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
+//
+//                                         .cornerRadius(16)
+//
+//                //                         .padding(.trailing)
+//                                         .frame(maxWidth: .infinity, alignment: .trailing)
+//                                    }
                                     
                                 }
                                 
                             }
                 //            .padding()
-                            
+//                }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
+                        .frame(maxWidth: .infinity)
                         .padding(.horizontal)
+//                        .frame(maxWidth: .infinity, alignment: .trailing)
+//                        .padding(.horizontal)
             }
         }
   
