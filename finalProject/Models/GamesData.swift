@@ -23,7 +23,7 @@ struct images: Codable {
 }
 
 struct Detail: Codable, Identifiable {
-    let id = UUID()
+    var id = UUID()
     let key: String
     let values: [String]
 }

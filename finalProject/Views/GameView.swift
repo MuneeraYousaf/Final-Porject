@@ -3,6 +3,7 @@ import SwiftUI
 struct GameView: View {
     var game: GameData
     @EnvironmentObject var gamesData: UserDataViewModel
+    @State private var isFavorite = false
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -13,29 +14,29 @@ struct GameView: View {
                         .cornerRadius(16)
                     
                     HStack {
-                        VStack(spacing: 4) {
-                            Image("Game 1")
+                      Image("Game 1")
                                 .resizable()
                                 .frame(width: 180, height: 200)
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                        }
+                        
                         
                         VStack(alignment: .leading) {
                             Text(game.name)
                                 .font(.system(size: 20))
                                 .bold()
                                 .padding(2)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                                .frame(maxWidth: .infinity,alignment: .leading)
+//                                .background(Color.red)
                                 .multilineTextAlignment(.leading)
                             HStack {
-//                                Text("4.0")
-//                                    .font(.system(size: 9))
+                                Text(Double(game.stars).description)
+                                    .font(.system(size: 15))
                                 RatingView(rating: .constant(game.stars))
-                                    .font(.system(size: 9))
+                                    .font(.system(size: 15))
                             }
-                            .padding(2)
+                            .padding(.top)
                             Text(game.age)
-                                .padding(2)
+//                                .padding(2)
                             
                             if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
                                 HStack {
@@ -44,18 +45,21 @@ struct GameView: View {
                                 }
                             }
                         }
-                        .padding(2)
+//                        .padding(2)
                         
                         
                     }
+//                    .background(.red)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Button(action: {
-                                gamesData.addFavoriteGame(game)
-                            }) {
+                
+
+//                        VStack {
+                    Button(action: {
+                                           if !isFavorite {
+                                               gamesData.addFavoriteGame(game)
+                                           }
+                                           isFavorite.toggle()
+                                       }) {
                                 Image(systemName: "heart")
                                     .frame(width: 30, height: 30)
                                     .foregroundColor(.white)
@@ -63,12 +67,18 @@ struct GameView: View {
                                     .overlay(RoundedRectangle(cornerRadius: 16)
                                         .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
                                     .cornerRadius(16)
-                            }
-                            Spacer()
-                        }
-                    }
+                            } 
+//                            Spacer()
+//                        }
+                                     
+                        
+                        .frame(maxWidth: .infinity, alignment: .bottomTrailing)
+                    .background(.red)
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
+//                .background(.red)
+                
+//                .frame(maxWidth: .infinity, alignment: .top)
+//                .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.horizontal)
             }
         }

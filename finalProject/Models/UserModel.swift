@@ -8,8 +8,8 @@
 import Foundation
 
 struct UserModel: Identifiable{
-    typealias ID = String
-    var id: ID = .init()
+//    typealias ID = String
+    var id = UUID()
     let username: String
     let image: String
 //    let password:String

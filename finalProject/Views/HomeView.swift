@@ -116,7 +116,7 @@ struct HomeView: View {
                             destination: {
                                 DetailsGameView(game: game)
                             }, label: {
-                                GameView(game: game).frame(width: .infinity, height: 200)}
+                                GameView(game: game).frame(width: 400, height: 200)}
                         )
                     }
                 }

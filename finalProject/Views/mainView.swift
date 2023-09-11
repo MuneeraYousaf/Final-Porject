@@ -10,6 +10,7 @@ import SwiftUI
 struct mainView: View {
     @State private var activeTab: Tab = .home
     @Namespace private var animation
+    @State private var user: UserModel?
     
     init(){UITabBar.appearance () . isHidden = true}
     
@@ -24,9 +25,10 @@ struct mainView: View {
                         .tag(Tab.home)
                     ListView()
                         .tag(Tab.list)
+                    
                     ProfileView()
                         .tag(Tab.profile)
-                }
+                }.background(Color.clear)
                 CustomTabBar()
             }
            

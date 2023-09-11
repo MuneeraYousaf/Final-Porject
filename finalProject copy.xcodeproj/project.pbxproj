@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A10CF062AAE8A0F007F8447 /* appdeleget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A10CF052AAE8A0F007F8447 /* appdeleget.swift */; };
 		1A6DA21A2AA671070030F6A2 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DA2192AA671070030F6A2 /* test.swift */; };
 		1A6DA21C2AA674760030F6A2 /* GamesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6DA21B2AA674760030F6A2 /* GamesData.swift */; };
 		1A7D579D2A9E9EB200B82DBD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D579C2A9E9EB200B82DBD /* UserModel.swift */; };
@@ -17,6 +18,7 @@
 		1A7D57AD2AA2978B00B82DBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A7D57AC2AA2978A00B82DBD /* GoogleService-Info.plist */; };
 		1A7D57AF2AA3D74B00B82DBD /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D57AE2AA3D74B00B82DBD /* UserDataViewModel.swift */; };
 		1A7D57B32AA5329B00B82DBD /* gamesv2.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A7D57B22AA5329B00B82DBD /* gamesv2.json */; };
+		1ABEFC272AAE795400003926 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEFC262AAE795400003926 /* AuthViewModel.swift */; };
 		1ACA54342AACA05700F5CB7D /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA54332AACA05700F5CB7D /* Comments.swift */; };
 		1ACA54352AAD4AB700F5CB7D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFF8E612AA9AE3B008954B5 /* HomeView.swift */; };
 		1ACA54422AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ACA54382AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf */; };
@@ -57,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A10CF052AAE8A0F007F8447 /* appdeleget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appdeleget.swift; sourceTree = "<group>"; };
 		1A5208322AADD6E60027859B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A6DA2192AA671070030F6A2 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		1A6DA21B2AA674760030F6A2 /* GamesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesData.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		1A7D57AC2AA2978A00B82DBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A7D57AE2AA3D74B00B82DBD /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		1A7D57B22AA5329B00B82DBD /* gamesv2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gamesv2.json; sourceTree = "<group>"; };
+		1ABEFC262AAE795400003926 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		1ACA54332AACA05700F5CB7D /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		1ACA54382AAD4C9D00F5CB7D /* SairaSemiCondensed-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Medium.ttf"; sourceTree = "<group>"; };
 		1ACA54392AAD4C9D00F5CB7D /* SairaSemiCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SairaSemiCondensed-Bold.ttf"; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			children = (
 				E0DEE5B02AABCFEA00E3D9C2 /* ImageProfileViewModel.swift */,
 				1A7D57AE2AA3D74B00B82DBD /* UserDataViewModel.swift */,
+				1ABEFC262AAE795400003926 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				1A7D579E2A9FB7A400B82DBD /* GameComments.swift */,
 				1A6DA21B2AA674760030F6A2 /* GamesData.swift */,
 				1ACA54332AACA05700F5CB7D /* Comments.swift */,
+				1A10CF052AAE8A0F007F8447 /* appdeleget.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				E0DEE5B52AABDAE600E3D9C2 /* SplashScreenView.swift in Sources */,
 				1AFF8E6F2AA9AE3C008954B5 /* GameView.swift in Sources */,
 				1A7D579F2A9FB7A400B82DBD /* GameComments.swift in Sources */,
+				1A10CF062AAE8A0F007F8447 /* appdeleget.swift in Sources */,
 				1AFF8E6C2AA9AE3C008954B5 /* DetailsGameView.swift in Sources */,
 				1A6DA21A2AA671070030F6A2 /* test.swift in Sources */,
 				1AFF8E722AA9B2C1008954B5 /* GameModel.swift in Sources */,
@@ -361,6 +368,7 @@
 				1A7D57A12A9FDC0400B82DBD /* SignIn.swift in Sources */,
 				1A7D579D2A9E9EB200B82DBD /* UserModel.swift in Sources */,
 				1AF4901E2A9E8BB9005DBE6A /* finalProjectApp.swift in Sources */,
+				1ABEFC272AAE795400003926 /* AuthViewModel.swift in Sources */,
 				1A7D57AF2AA3D74B00B82DBD /* UserDataViewModel.swift in Sources */,
 				1ACA54352AAD4AB700F5CB7D /* HomeView.swift in Sources */,
 				E0DEE5B12AABCFEA00E3D9C2 /* ImageProfileViewModel.swift in Sources */,
