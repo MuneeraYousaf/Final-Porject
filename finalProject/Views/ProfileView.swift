@@ -8,10 +8,7 @@ struct ProfileView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @State var showNextPage: Bool = false
     var body: some View {
-        //        ForEach(users.users, id: \.id){
-        //            i in
-        //            Text(i.email)
-        //        }
+
         @Environment(\.locale) var locale
         NavigationView{
             TabView{
@@ -19,26 +16,12 @@ struct ProfileView: View {
                     ZStack(alignment: .bottomTrailing){
                         Button(action: {
                             showNextPage = true
-                            //                                showImagePicker = true
+        
                         }, label: {
-                            //                AsyncImage(url: URL(string:"https://source.unsplash.com/200x200/?[user]"))
-                            //                    .resizable()
-                            //                    .frame(width: 120, height: 120)
-                            //                    .clipShape(Circle())
+                    
                             Circle()
                                 .frame(width: 120, height: 120)
-                            //                                if let image = vm.selectedImage {
-                            //                                    Image(uiImage: image)
-                            //                                        .resizable()
-                            //                                        .scaledToFit()
-                            //                                                            .clipShape(Circle())
-                            //                                                            .frame(width: 250 , height: 250)
-                            //                                                    } else {
-                            //                                                        Image(systemName: "person.fill")
-                            //                                                        .font(.system(size: 64))
-                            //                                                        .padding()
-                            //                                                        .foregroundColor(Color(.label))
-                            //                                                        }
+   
                             
                         })
                         .sheet(isPresented: $showNextPage){
@@ -51,7 +34,7 @@ struct ProfileView: View {
                             .clipShape(Circle())
                     }
                     .padding()
-                    //                    Text("Afrah")
+       
                     
                     .font(Font.custom("Saira SemiCondensed", size: 30)
                         .weight(.medium)
@@ -63,35 +46,30 @@ struct ProfileView: View {
                             Text("name")
                                 .font(Font.custom("Saira SemiCondensed", size: 20))
                                 .foregroundColor(.black)
-                            //                        .padding()
+           
                             Spacer()
                             Text(users.userss.username)
                                 .font(Font.custom("Saira SemiCondensed", size: 18))
                                 .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
                             
-                            //                            Text("AdomShafi007")
-                            //                                .font(Font.custom("Saira SemiCondensed", size: 18))
-                            //                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+                      
                         }
-                        //                .frame(maxWidth: .infinity , alignment : .leading)
+                
                         .padding(.vertical)
                         HStack{
                             Text("name email")
                                 .font(Font.custom("Saira SemiCondensed", size: 20))
                                 .foregroundColor(.black)
-                            //                        .padding(12)
+          
                             Spacer()
                             Text(users.userss.email)
                                 .font(Font.custom("SairaSemiCondensed-SemiBold.ttf", size: 18))
                                 .multilineTextAlignment(.trailing)
                                 .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
                         }
-                        //                            Text("adomshafi007@gmail.com")
-                        //                                .font(Font.custom("Saira SemiCondensed", size: 18))
-                        //                                .multilineTextAlignment(.trailing)
-                        //                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+           
                     }
-                    //                .frame(maxWidth: .infinity , alignment : .leading)
+           
                     .padding(.vertical)
                     HStack{
                         Text("number")
@@ -105,42 +83,39 @@ struct ProfileView: View {
                             .multilineTextAlignment(.trailing)
                             .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
                     }
-                    //                            Text("+8801704889390")
-                    //                                .font(Font.custom("Saira SemiCondensed", size: 18))
-                    //                                .multilineTextAlignment(.trailing)
-                    //                                .foregroundColor(Color(red: 0.55, green: 0.55, blue: 0.55))
+           
                 }
-                //                .frame(maxWidth: .infinity , alignment : .leading)
+   
                 .padding(.vertical)
             }
             Spacer()
-            //                    .padding(.horizontal)
+                .toolbar{
+                    ToolbarItemGroup(placement:.navigationBarTrailing){
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Image("ion-log-out")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                            
+                                .padding(.horizontal,16)
+                                .padding(.vertical,8)
+                        
+                        })
+                        .buttonStyle(.plain)
+                        
+                        
+                    }
         }
         
-        .padding(.horizontal , 20)
+        .padding(.horizontal )
         
-        .toolbar{
-            ToolbarItemGroup(placement:.navigationBarTrailing){
-                
-                Button(action: {
-                    
-                }, label: {
-                    Image("ion-log-out")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                    
-                        .padding(.horizontal,16)
-                        .padding(.vertical,8)
-                    //                                        .padding(.trailing ,320)
-                })
-                .buttonStyle(.plain)
-                
-                //
-            }
+     
         }.onAppear(){
             if authViewModel.user != nil {
                 users.fetchUsers()
-                //                }
+
             }
             
         }

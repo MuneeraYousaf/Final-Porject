@@ -14,71 +14,63 @@ struct GameView: View {
                         .cornerRadius(16)
                     
                     HStack {
-                      Image("Game 1")
+
+                            Image("Game 1")
                                 .resizable()
                                 .frame(width: 180, height: 200)
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                        
-                        
-                        VStack(alignment: .leading) {
-                            Text(game.name)
-                                .font(.system(size: 20))
-                                .bold()
-                                .padding(2)
-                                .frame(maxWidth: .infinity,alignment: .leading)
-//                                .background(Color.red)
-                                .multilineTextAlignment(.leading)
-                            HStack {
-                                Text(Double(game.stars).description)
-                                    .font(.system(size: 15))
-                                RatingView(rating: .constant(game.stars))
-                                    .font(.system(size: 15))
-                            }
-                            .padding(.top)
-                            Text(game.age)
-//                                .padding(2)
                             
-                            if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
+                            
+                            VStack(alignment: .leading) {
+                    
+                                Text(game.name)
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .padding(2)
+                                    .frame(maxWidth: .infinity,alignment: .leading)
+                 
+                                    .multilineTextAlignment(.leading)
                                 HStack {
-                                    Text(releaseDateDetail.values.joined(separator: ", "))
-                                        .font(.footnote)
+                                    Text(Double(game.stars).description)
+                                        .font(.system(size: 15))
+                                    RatingView(rating: .constant(game.stars))
+                                        .font(.system(size: 15))
                                 }
+                                .padding(.top)
+                                
+                                Text(game.age)
+                                
+                                if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
+                                    HStack {
+                                        Text(releaseDateDetail.values.joined(separator: ", "))
+                                            .font(.footnote)
+                                    }
+                                }
+                                
                             }
-                        }
-//                        .padding(2)
+                           
+                        Button(action: {
+                            if !isFavorite {
+                                gamesData.addFavoriteGame(game)
+                            }
+                            isFavorite.toggle()
+                        }) {
+                            Image(systemName: "heart")
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.white)
+                                .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
+                                .overlay(RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
+                                .cornerRadius(16)
+                        }.frame(maxWidth: .infinity, alignment: .bottomTrailing)
                         
-                        
-                    }
-//                    .background(.red)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+                            .padding(.vertical, -100)
 
-//                        VStack {
-                    Button(action: {
-                                           if !isFavorite {
-                                               gamesData.addFavoriteGame(game)
-                                           }
-                                           isFavorite.toggle()
-                                       }) {
-                                Image(systemName: "heart")
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.white)
-                                    .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
-                                    .overlay(RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
-                                    .cornerRadius(16)
-                            } 
-//                            Spacer()
-//                        }
-                                     
-                        
-                        .frame(maxWidth: .infinity, alignment: .bottomTrailing)
-                    .background(.red)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
                 }
-//                .background(.red)
-                
-//                .frame(maxWidth: .infinity, alignment: .top)
-//                .frame(maxWidth: .infinity, alignment: .trailing)
+
                 .padding(.horizontal)
             }
         }

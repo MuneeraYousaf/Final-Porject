@@ -36,7 +36,7 @@ class UserDataViewModel : ObservableObject {
     }
     func fetchUsers() {
         let currenUser = Auth.auth().currentUser?.email
-        var email = "email"
+        let email = "email"
         print("user Email in the fetch",currenUser!)
         Firestore.firestore()
             .collection("users")
@@ -53,42 +53,13 @@ class UserDataViewModel : ObservableObject {
                         let phone = data["phone"] as? String ?? ""
                         let email = data["email"] as? String ?? ""
                         self.userss = UserModel(username: username, image: image, phone: phone, email: email)
-//                        self.users.append(newUser)
                         print(self.userss)
-//                        print(self.users)
+                     
                     }
                 }
                 
             }
     }
-//        func fetchUsers() {
-//            var currenUser = Auth.auth().currentUser?.email
-//            var email = "email"
-//            print("user Email in the fetch",currenUser!)
-//            Firestore.firestore()
-//                .collection("users")
-//                .whereField(email, isEqualTo: currenUser!)
-//                .addSnapshotListener { (snapshot, error) in
-//                    if let error = error {
-//                        print("Error fetching users: \(error.localizedDescription)")
-//                        return
-//                    }
-//                    if let snapshot = snapshot {
-//                        snapshot.documentChanges.forEach { change in
-//
-//                            let data = change.document.data()
-//                            let username = data["username"]  as? String ?? ""
-//                            let image = data["image"] as? String ?? ""
-//                            let phone = data["phone"] as? String ?? ""
-//                            let email = data["email"] as? String ?? ""
-//                            let newUser = UserModel(username: username, image: image, phone: phone, email: email)
-//                            self.users.append(newUser)
-//                            print(newUser)
-//                            print(self.users)
-//                        }
-//                    }
-//                }
-//        }
     
     
     
@@ -141,62 +112,7 @@ class UserDataViewModel : ObservableObject {
     }
     
     
-//    func addFavoriteGame(_ game: GameData) {
-//
-//        if let user = Auth.auth().currentUser {
-//            let userFavoritesCollection = Firestore.firestore().collection("users").document(user.uid).collection("favorites")
-//
-//            // Check if the game already exists in the user's favorites
-//            userFavoritesCollection.whereField("id", isEqualTo: game.id).getDocuments {(querySnapshot, error) in
-//                if let error = error {
-//                    print("Error checking for duplicates: \(error)")
-//                } else {
-//                    if let documents = querySnapshot?.documents, documents.isEmpty {
-//
-//                        // No duplicate found, add the game to favorites
-//                        let gameData: [String: Any] = [
-//
-//                            "name": game.name,
-//                            "images": game.images.map { image in
-//                                return [
-//                                    "src": image.src
-//                                ]
-//                            },
-//                            "about": game.about,
-//                            "details": game.details.map { detail in
-//                                return [
-//                                    "key": detail.key ,
-//                                    //                                    "values": detail.values.map { value in
-//                                    //                                        switch value {
-//                                    //                                        case .string(let stringValue):
-//                                    //                                            return stringValue
-//                                    //                                        case .stringArray(let stringArrayValue):
-//                                    //                                            return stringArrayValue.joined(separator: ", ") // Join array elements into a single string
-//                                    //                                        }
-//                                    //                                    }
-//                                ] as [String : Any]
-//                            },
-//                            "stars": game.stars,
-//                            "age": game.age
-//                            // Add other game properties here
-//                        ]
-//
-//                        // Add the game data to the "favorites" collection
-//                        userFavoritesCollection.addDocument(data: gameData) { error in
-//                            if let error = error {
-//                                print("Error adding favorite game: \(error)")
-//                            } else {
-//                                print("Favorite game added successfully!")
-//                            }
-//                        }
-//                    } else {
-//                        // Duplicate found, handle accordingly (e.g., show an error message)
-//                        print("Duplicate game found. You can handle this case here.")
-//                    }
-//                }
-//            }
-//        }
-//    }
+
     
     func addFavoriteGame(_ game: GameData) {
         if let currentUserEmail = Auth.auth().currentUser?.email {
@@ -264,83 +180,7 @@ class UserDataViewModel : ObservableObject {
         }
     }
 
-    
-//    func fetchFavoriteGames() {
-//
-//        if let user = Auth.auth().currentUser {
-//            let userFavoritesCollection = Firestore.firestore().collection("users").document(user.uid).collection("favorites")
-//
-//            userFavoritesCollection.addSnapshotListener { querySnapshot, error in
-//                if let error = error {
-//                    print("Error fetching favorite games: \(error)")
-//                    return // Return early to prevent further execution in case of an error
-//                }
-//
-//                var favoriteGames: [GameData] = []
-//
-//                for document in querySnapshot?.documents ?? [] {
-//                    let data = document.data()
-//                    let id = document.documentID
-//                    //                    let data = change.document.data()
-//                    // Extract the required fields from the data dictionary
-//                    if let name = data["name"] as? String,
-//                       let about = data["about"] as? String,
-//                       //                       let images = data["images"] as? [[String: String]],
-//                       //                       let details = data["details"] as? [Detail],
-//                        let stars = data["stars"] as? Int,
-//                       let age = data["age"] as? String {
-//
-//                        // Create a GameData instance manually
-//                        let game = GameData(id: id, name: name, images:[] , about: about, details: [], stars: stars, age: age)
-//
-//                        favoriteGames.append(game)
-//                    }
-//                }
-//                favoriteGames = self.removeDuplicates(from: favoriteGames)
-//                // Update the @State property here
-//                DispatchQueue.main.async {
-//                    self.favoriteGames = favoriteGames
-//                    //                    print(favoriteGames)
-//                }
-//            }
-//        }
-//    }
-//    func fetchFavoriteGames() {
-//        if let currentUser = Auth.auth().currentUser {
-//            let userFavoritesCollection = Firestore.firestore().collection("users").document(currentUser.uid).collection("favorites")
-//
-//            userFavoritesCollection.addSnapshotListener { querySnapshot, error in
-//                if let error = error {
-//                    print("Error fetching favorite games: \(error)")
-//                    return // Return early to prevent further execution in case of an error
-//                }
-//
-//                var favoriteGames: [GameData] = []
-//
-//                for document in querySnapshot?.documents ?? [] {
-//                    let data = document.data()
-//                    let id = document.documentID
-//                    // Extract the required fields from the data dictionary
-//                    if let name = data["name"] as? String,
-//                       let about = data["about"] as? String,
-//                       let stars = data["stars"] as? Int,
-//                       let age = data["age"] as? String {
-//
-//                        // Create a GameData instance manually
-//                        let game = GameData(id: id, name: name, images:[] , about: about, details: [], stars: stars, age: age)
-//
-//                        favoriteGames.append(game)
-//                    }
-//                }
-//                favoriteGames = self.removeDuplicates(from: favoriteGames)
-//                // Update the @State property here
-//                DispatchQueue.main.async {
-//                    self.favoriteGames = favoriteGames
-//                    //                    print(favoriteGames)
-//                }
-//            }
-//        }
-//    }
+
     func fetchFavoriteGames() {
         if let currentUserEmail = Auth.auth().currentUser?.email {
             let userFavoritesCollection = Firestore.firestore().collection("users")
