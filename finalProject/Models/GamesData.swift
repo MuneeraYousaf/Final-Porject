@@ -14,7 +14,7 @@ struct GameData: Codable{
     let about: String
     let details: [Detail]
     let stars: Int
-    let age: String
+    var age: String
 }
 
 struct images: Codable {
