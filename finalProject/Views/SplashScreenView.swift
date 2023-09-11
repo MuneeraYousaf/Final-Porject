@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 struct SplashScreenView: View {
     @State var isActive : Bool = false
        @State private var size = 0.8

@@ -6,7 +6,18 @@
 	<array>
 		<string></string>
 	</array>
-	<key>SairaSemiCondensed-SemiBold</key>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+	</dict>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleExecutable</key>
+	<string></string>
+	<key>SairaSemiCondensed-SemiBold.ttf</key>
 	<string>SairaSemiCondensed-SemiBold.ttf</string>
+	<key></key>
+	<string></string>
 </dict>
 </plist>

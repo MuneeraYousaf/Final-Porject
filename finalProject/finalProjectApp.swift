@@ -7,10 +7,12 @@
 
 import SwiftUI
 import FirebaseCore
+import Firebase
 @main
 struct finalProjectApp: App {
     
     @ObservedObject var UserData = UserDataViewModel()
+    @ObservedObject var authViewModel = AuthViewModel()
     init(){
         FirebaseApp.configure()
     }
@@ -22,7 +24,21 @@ struct finalProjectApp: App {
                 //            GamesListView().environmentObject(UserData)
                 //            mainView()
                 //            AddCommentView().environmentObject(UserData)
-                SplashScreenView().environmentObject(UserData)
+            SplashScreenView()
+                .environmentObject(UserData)
+                .environmentObject(authViewModel)    .onAppear {
+                    // Add the listener when the main view appears
+                    Auth.auth().addStateDidChangeListener { auth, user in
+                        if let user = user {
+                            // The user is signed in, you can access their information here
+                            self.authViewModel.user = user
+                            print(authViewModel.user as Any)
+                        } else {
+                            // No user is signed in
+                            self.authViewModel.user = nil
+                        }
+                    }
+                }
                 //            ProfileView()
                 //            FavoritesView().environmentObject(UserData)
                 

@@ -22,8 +22,7 @@ struct images: Codable {
 
 }
 
-struct Detail: Codable, Identifiable {
-    let id = UUID()
+struct Detail: Codable {
     let key: String
     let values: [String]
 }
@@ -56,18 +55,4 @@ enum Values: Codable {
     }
 }
 
-//struct Detail: Codable {
-//    let key: String?
-//    let values: [Value]
-//
-//    private enum CodingKeys: String, CodingKey {
-//        case key
-//        case values
-//    }
-//
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        key = try container.decodeIfPresent(String.self, forKey: .key)
-//        values = try container.decode([Value].self, forKey: .values)
-//    }
-//}
+

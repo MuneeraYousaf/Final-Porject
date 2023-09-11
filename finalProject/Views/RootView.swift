@@ -38,41 +38,41 @@
 //        }
 //        //    }
 //    }
-////        func uploadDataToFirestore(_ data: [GameData]) {
-////            // Reference the Firestore collection "games".
-////            let gamesCollection = Firestore.firestore().collection("games")
-////
-////            // Use a loop to add each GameData as a separate document.
-////            for game in data {
-////                do {
-////                    // Convert the GameData struct to a dictionary manually.
-////                    var gameDataDictionary: [String: Any] = [
-////                        "id": game.id,
-////                        "name": game.name,
-////                        "about": game.about,
-////                        "age": game.age,
-////                        "stars": game.stars,
-////                        "details": game.details.map { detail in
-////                            return [
-////                                "key": detail.key,
-////                                "values": detail.values.map { value in
-////                                    switch value {
-////                                    case .string(let stringValue):
-////                                        return stringValue
-////                                    case .stringArray(let stringArrayValue):
-////                                        return stringArrayValue.joined(separator: ", ") // Join array of strings
-////                                    }
-////                                }
-////                            ]
-////                        },
-////                        "images": game.images.map { image in
-////                            return [
-////                                "src": image.src
-////                            ]
-////                        }
-////                        // Add other fields here as needed
-////                    ]
-////
+//        func uploadDataToFirestore(_ data: [GameData]) {
+//            // Reference the Firestore collection "games".
+//            let gamesCollection = Firestore.firestore().collection("games")
+//
+//            // Use a loop to add each GameData as a separate document.
+//            for game in data {
+//                do {
+//                    // Convert the GameData struct to a dictionary manually.
+//                    var gameDataDictionary: [String: Any] = [
+//                        "id": game.id,
+//                        "name": game.name,
+//                        "about": game.about,
+//                        "age": game.age,
+//                        "stars": game.stars,
+//                        "details": game.details.map { detail in
+//                            return [
+//                                "key": detail.key,
+//                                "values": detail.values.map { value in
+//                                    switch value {
+//                                    case .string(let stringValue):
+//                                        return stringValue
+//                                    case .stringArray(let stringArrayValue):
+//                                        return stringArrayValue.joined(separator: ", ") // Join array of strings
+//                                    }
+//                                }
+//                            ]
+//                        },
+//                        "images": game.images.map { image in
+//                            return [
+//                                "src": image.src
+//                            ]
+//                        }
+//                        // Add other fields here as needed
+//                    ]
+//
 //                    // Add the document to the "games" collection.
 //                    gamesCollection.addDocument(data: gameDataDictionary) { error in
 //                        if let error = error {
@@ -86,7 +86,7 @@
 //                }
 //            }
 //        }
-////    
+////
 //    
 //}
 //

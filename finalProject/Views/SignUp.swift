@@ -17,14 +17,30 @@ struct SignUp: View {
     @State var repassword: String = ""
     @State var showNextPage: Bool = false
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var userData: UserDataViewModel
+    @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
 //        NavigationView{
             ZStack{
                 BackgroundView()
                 if showNextPage == true{
+                  
+                    mainView().onAppear(){
+                        if let user = Auth.auth().currentUser {
+                                   // User is signed in, fetch their data
+                            gamesData.fetchUsers()
+    //                               fetchUserData()
+                            
+                            print(user.uid)
+                               } else {
+                                   // No user signed in, handle accordingly
+                                   // For example, show a login screen
+                               }
+                    gamesData.fetchGames()
+                    gamesData.fetchFavoriteGames()
+                   
+                }
+//                    Text("hello")
                     
-                    Text("hello")
                 }else{
                     VStack {
                         Spacer()
@@ -132,7 +148,7 @@ struct SignUp: View {
                 print("User registration successful.")
                 
                 // Add user data to your user management system (e.g., userData) if needed
-                userData.addUser(username: userName, email: email, phone: phone, image: "")
+                gamesData.addUser(username: userName, email: email, phone: phone, image: "")
                 
                 // Set a flag to indicate that the next page should be shown
                 showNextPage = true
