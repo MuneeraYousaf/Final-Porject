@@ -9,6 +9,7 @@ class UserDataViewModel : ObservableObject {
     @Published var favoriteGames: [GameData] = []
     @Published var comments: [Comment] = []
    
+   
     //MARK: Add user to firebase
     
     
@@ -293,11 +294,40 @@ class UserDataViewModel : ObservableObject {
             }
         }
     }
-    
-    
-    
-    
+
+        
+
+    func fetchComments(forGameID gameID: String) async -> [Comment] {
+         let db = Firestore.firestore()
+            let commentsRef = db.collection("comments").whereField("gameID", isEqualTo: gameID)
+
+            var comments: [Comment] = []
+
+            do {
+                let querySnapshot = try await commentsRef.getDocuments()
+                
+                for document in querySnapshot.documents {
+                    if let commentData = document.data() as? [String: Any],
+                        let userID = commentData["userID"] as? String,
+                        let text = commentData["text"] as? String,
+                        let rating = commentData["rating"] as? Int {
+                        let comment = Comment(userID: userID, gameID: gameID, text: text, rating: rating)
+                        comments.append(comment)
+                    }
+                }
+            } catch {
+                // Handle the error
+                print("Error fetching comments: \(error)")
+            }
+
+            return comments
+        }
     
 }
+    
+    
+    
+    
+
 
 

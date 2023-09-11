@@ -14,13 +14,22 @@ struct GameView: View {
                         .cornerRadius(16)
                     
                     HStack {
-
-                            Image("Game 1")
-                                .resizable()
-                                .frame(width: 180, height: 200)
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                            
-                            
+                        if game.images.indices.contains(1) {
+                            // Check if the array contains an element at index 1
+                            AsyncImage(url: URL(string: game.images[1].src)) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 180, height: 200)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                            } placeholder: {
+                                ProgressView()
+                                    .frame(width: 180, height: 200)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                            }
+                        } else {
+                            // Handle the case when index 1 is out of range
+                            Text("Image not available")
+                        }
                             VStack(alignment: .leading) {
                     
                                 Text(game.name)
@@ -28,7 +37,7 @@ struct GameView: View {
                                     .bold()
                                     .padding(2)
                                     .frame(maxWidth: .infinity,alignment: .leading)
-                 
+
                                     .multilineTextAlignment(.leading)
                                 HStack {
                                     Text(Double(game.stars).description)

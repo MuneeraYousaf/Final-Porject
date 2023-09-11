@@ -10,23 +10,24 @@ import FirebaseCore
 import Firebase
 @main
 struct finalProjectApp: App {
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @ObservedObject var UserData = UserDataViewModel()
     @ObservedObject var authViewModel = AuthViewModel()
-    init(){
-        FirebaseApp.configure()
-    }
+//    init(){
+//        FirebaseApp.configure()
+//    }
     var body: some Scene {
         WindowGroup {
 //            NavigationView{
                 //            SignUp()
-                //            RootView()
+//                            RootView()
                 //            GamesListView().environmentObject(UserData)
                 //            mainView()
                 //            AddCommentView().environmentObject(UserData)
             SplashScreenView()
                 .environmentObject(UserData)
-                .environmentObject(authViewModel)    .onAppear {
+                .environmentObject(authViewModel)
+                .onAppear {
                     // Add the listener when the main view appears
                     Auth.auth().addStateDidChangeListener { auth, user in
                         if let user = user {
@@ -45,5 +46,12 @@ struct finalProjectApp: App {
                 //            mainView()
 //            }
         }
+    }
+}
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure() // Initialize Firebase once
+
+        return true
     }
 }
