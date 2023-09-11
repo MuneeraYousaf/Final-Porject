@@ -19,21 +19,115 @@ struct DetailsGameView: View {
                     .scaledToFit()
                     .cornerRadius(16)
                     .padding()
-                VStack{
-                    //GameRate
-                    Text(game.stars.description)
-                        .font(Font.custom("Saira SemiCondensed", size: 12))
-                        .fontWeight(.medium)
-                    RatingView(rating: .constant(game.stars))
-                        .font(Font.custom("Saira SemiCondensed", size: 12))
-                        .fontWeight(.medium)
-                    //Pricing
-                    Text("$10.99")
-                        .font(Font.custom("Saira SemiCondensed", size: 12))
-                        .fontWeight(.medium)
-                    
-                }.padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                ScrollView(.horizontal , showsIndicators: false){
+                    HStack{
+                        VStack{
+                            //GameRate
+                            Text("Rate")
+                            //                        .font(Font.custom("Saira SemiCondensed", size: 16))
+                            //                        .fontWeight(.medium)
+                            //                        .padding(2)
+                                .bold()
+                                .font(Font.custom("Saira SemiCondensed", size: 19))
+                                .padding(2)
+                            
+                            Image(systemName: "star")
+                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                .fontWeight(.medium)
+                            
+                            //                    Image(systemName: "star")
+                            //                        .font(Font.custom("Saira SemiCondensed", size: 12))
+                            //                        .fontWeight(.medium)
+                            //                        .font(Font.custom("Saira SemiCondensed", size: 12))
+                            //                        .fontWeight(.medium)
+                        }
+                        .padding(10)
+                        Divider()
+                            .background(.gray)
+                            .frame(height: 75)
+                        //                Spacer()
+                        //Pricing
+                        VStack{
+                            Text("Pric")
+                                .bold()
+                                .font(Font.custom("Saira SemiCondensed", size: 19))
+                                .padding(2)
+                            Text("$10.99")
+                            //                        .font(Font.custom("Saira SemiCondensed", size: 12))
+                            //                        .fontWeight(.medium)
+                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                .fontWeight(.medium)
+                        }
+                        .padding(10)
+                        Divider()
+                            .background(.gray)
+                            .frame(height: 75)
+                        
+                        VStack{
+                            Text("Release date:")
+                            //                        .frame(maxWidth: .infinity,alignment: .leading)
+                            //                        .padding(2)
+                                .bold()
+                                .font(Font.custom("Saira SemiCondensed", size: 19))
+                                .padding(2)
+                            Text(" June 22, 2023")
+                            //                        .font(Font.custom("Saira SemiCondensed", size: 10))
+                            //                        .fontWeight(.regular)
+                            //                        .frame(maxWidth: .infinity,alignment: .leading)
+                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                .fontWeight(.medium)
+                        }
+                        .padding(10)
+                        Divider()
+                            .background(.gray)
+                            .frame(height: 75)
+                        VStack{
+                            Text("Publisher:")
+                            //                    .font(Font.custom("Saira SemiCondensed", size: 12))
+                            //                    //                    .fontWeight(.regular)
+                            //                        .frame(maxWidth: .infinity,alignment: .leading)
+                            //                        .padding(2)
+                                .bold()
+                                .font(Font.custom("Saira SemiCondensed", size: 19))
+                                .padding(2)
+                            Text("Square Enix")
+                            //                        .font(Font.custom("Saira SemiCondensed", size: 10))
+                            //                        .fontWeight(.regular)
+                            //                        .frame(maxWidth: .infinity,alignment: .leading)
+                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                .fontWeight(.medium)
+                        }
+                        .padding(10)
+                        Divider()
+                            .background(.gray)
+                            .frame(height: 75)
+                        VStack{
+                            Text("Age")
+                                .bold()
+                                .font(Font.custom("Saira SemiCondensed", size: 19))
+                                .padding(2)
+                            Text("13+")
+                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                .fontWeight(.medium)
+                        }
+                    }.padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+//                VStack{
+//                    //GameRate
+//                    Text(game.stars.description)
+//                        .font(Font.custom("Saira SemiCondensed", size: 12))
+//                        .fontWeight(.medium)
+//                    RatingView(rating: .constant(game.stars))
+//                        .font(Font.custom("Saira SemiCondensed", size: 12))
+//                        .fontWeight(.medium)
+//                    //Pricing
+//                    Text("$10.99")
+//                        .font(Font.custom("Saira SemiCondensed", size: 12))
+//                        .fontWeight(.medium)
+//
+//                }.padding(.horizontal)
+//                    .frame(maxWidth: .infinity, alignment: .trailing)
 //                ForEach(game.details, id: \.key){ i in
                     VStack{
                         //GameDescription

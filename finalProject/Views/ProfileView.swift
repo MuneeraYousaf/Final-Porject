@@ -16,7 +16,7 @@ struct ProfileView: View {
 //            Text(i.email)
 //        }
         @Environment(\.locale) var locale
-        NavigationStack{
+        NavigationView{
             TabView{
                 VStack{
                     ZStack(alignment: .bottomTrailing){
@@ -129,7 +129,7 @@ struct ProfileView: View {
                 }
                 
                 .padding(.horizontal , 20)
-                
+               
                 .toolbar{
                     ToolbarItemGroup(placement:.navigationBarTrailing){
                    
@@ -151,6 +151,7 @@ struct ProfileView: View {
                     }
          
             }
+            
         }
     }
     }

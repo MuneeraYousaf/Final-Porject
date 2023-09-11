@@ -19,7 +19,7 @@ struct HomeView: View {
 
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
-        NavigationView{
+//        NavigationView{
             //        GeometryReader {geometry in
             VStack{
                 VStack{
@@ -141,9 +141,9 @@ struct HomeView: View {
                 //                                        withAnimation(.spring()) {
                 //                                            show.toggle()
                 //                                        }
-            }.navigationBarBackButtonHidden(true)
+            }
            
-        }
+//        }
        
 //                } .onAppear(){
 //                    gamesData.fetchGames()

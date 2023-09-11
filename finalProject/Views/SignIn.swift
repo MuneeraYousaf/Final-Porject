@@ -22,8 +22,42 @@ struct SignIn: View {
                     Text("hello")
                 }else{
                     VStack {
+                        Spacer()
                         //                    HStack{
                         //                    Image(systemName: "swift")
+//                        Image("logo")
+//
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 60, height: 40, alignment: .center)
+////                            .padding(-5)
+//                        Text("Games Vault")
+//                            .font(
+//                                .custom(
+//                                    "SairaSemiCondensed-SemiBold",
+//                                    fixedSize: 20)
+//                                .weight(.medium)
+//                            )
+//                        //                         )
+//                            .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding()
+                        VStack(){
+//                            Spacer()
+                            Image("logo")
+                            
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 120, height: 150, alignment: .center)
+                            Text("Games Vault")
+                                .font(
+                                    .custom(
+                                        "SairaSemiCondensed-SemiBold",
+                                        fixedSize: 35)
+                                    .weight(.medium)
+                                )
+                            //                         )
+                                .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-28)
+                        }
+                        .padding()
                         Spacer()
                         TextField("Text1", text: $email).padding(.leading)
                             .frame(width: 360, height: 60).background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902)).cornerRadius(7)
@@ -57,7 +91,7 @@ struct SignIn: View {
                                 .foregroundColor(.blue)
                         }
                         NavigationLink(
-                            destination: mainView() ) {
+                            destination: mainView().navigationBarBackButtonHidden(true) ) {
                                 Text("Text6")
                                 //                            Image(systemName: "arrow.right.square")
                             }.buttonStyle(.plain)
