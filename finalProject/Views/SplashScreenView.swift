@@ -18,10 +18,10 @@ struct SplashScreenView: View {
                 //            mainView().onAppear(
                 //                perform: gamesData.fetchGames
                 //            )
-                SignIn()
+                Onbording()
             } else {
                 ZStack {
-                    
+                        BackgroundView()
                     VStack {
                         
                         Image("logo")

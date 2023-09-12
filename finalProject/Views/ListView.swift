@@ -5,41 +5,43 @@ struct ListView: View {
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         //       صفحه قائمه الالعاب المفضله
-        
-        VStack{
+        ZStack {
+            BackgroundView()
             VStack{
-                
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 40, alignment: .center)
-                    .padding(-5)
-                Text("Games Vault")
-                    .font(
-                        .custom(
-                            "SairaSemiCondensed-SemiBold",
-                            fixedSize: 20)
-                        .weight(.medium)
-                    )
-                
-                    .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-10)
-                
-                ScrollView{
-                    VStack{
-                        ForEach(gamesData.favoriteGames, id: \.id) { game in
-                            
-                            GameComponentView(game:game)
-                            
+                VStack{
+                    
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 40, alignment: .center)
+                        .padding(-5)
+                    Text("Games Vault")
+                        .font(
+                            .custom(
+                                "SairaSemiCondensed-SemiBold",
+                                fixedSize: 20)
+                            .weight(.medium)
+                        )
+                    
+                        .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-10)
+                    
+                    ScrollView{
+                        VStack{
+                            ForEach(gamesData.favoriteGames, id: \.id) { game in
+                                
+                                GameComponentView(game:game)
+                                
+                                
+                            }
                             
                         }
-                        
                     }
                 }
             }
-            
+            }
             .onAppear(){
                 gamesData.fetchFavoriteGames()
-            }
+            
             
         }
     }

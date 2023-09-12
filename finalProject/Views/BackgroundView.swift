@@ -10,6 +10,7 @@ struct BackgroundView: View {
     var body: some View {
         Color(red: 0.8980392156862745, green: 0.8980392156862745, blue: 0.8980392156862745)
             .ignoresSafeArea()
+           
     }
 }
 

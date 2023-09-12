@@ -8,11 +8,33 @@ class UserDataViewModel : ObservableObject {
     @Published var games: [GameData] = []
     @Published var favoriteGames: [GameData] = []
     @Published var comments: [Comment] = []
-   
-   
+    
+    
     //MARK: Add user to firebase
     
-    
+    func updateUser(
+        withUserID: String,
+        username: String? = nil,
+        email: String? = nil,
+        phone: String? = nil,
+        image: String? = nil
+    ) {
+        var userData: [String: Any] = [:]
+        if let username = username {
+            userData["username"] = username
+        }
+        if let email = email {
+            userData["email"] = email
+        }
+        if let phone = phone {
+            userData["phone"] = phone
+        }
+        if let image = image {
+            userData["image"] = image
+        }
+        let userDocRef = Firestore.firestore().collection("users").document(withUserID)
+        userDocRef.updateData(userData)
+    }
     
     func addUser(username: String, email: String, phone: String, image: String) {
         // Create a dictionary with the user data.
@@ -55,7 +77,7 @@ class UserDataViewModel : ObservableObject {
                         let email = data["email"] as? String ?? ""
                         self.userss = UserModel(username: username, image: image, phone: phone, email: email)
                         print(self.userss)
-                     
+                        
                     }
                 }
                 
@@ -113,14 +135,12 @@ class UserDataViewModel : ObservableObject {
     }
     
     
-
-    
     func addFavoriteGame(_ game: GameData) {
         if let currentUserEmail = Auth.auth().currentUser?.email {
             let userFavoritesCollection = Firestore.firestore().collection("users")
                 .whereField("email", isEqualTo: currentUserEmail)
                 .limit(to: 1) // Limit the query to 1 document (assuming emails are unique)
-
+            
             userFavoritesCollection.getDocuments { (querySnapshot, error) in
                 if let error = error {
                     print("Error checking for duplicates: \(error)")
@@ -129,59 +149,132 @@ class UserDataViewModel : ObservableObject {
                         print("User not found")
                         return
                     }
-
+                    
                     // Get the user document ID
                     let userDocumentID = document.documentID
-
+                    
                     // Reference to the "favorites" subcollection under the user document
                     let userFavoritesCollection = Firestore.firestore().collection("users").document(userDocumentID).collection("favorites")
-
-                    // Check if the game already exists in the user's favorites
-                    userFavoritesCollection.whereField("id", isEqualTo: game.id).getDocuments { (querySnapshot, error) in
+                    
+                    // Add a listener to monitor changes in the user's favorites
+                    let listener = userFavoritesCollection.whereField("game_id", isEqualTo: game.id).addSnapshotListener { (querySnapshot, error) in
                         if let error = error {
-                            print("Error checking for duplicates: \(error)")
-                        } else {
-                            if let documents = querySnapshot?.documents, documents.isEmpty {
-                                // No duplicate found, add the game to favorites
-                                let gameData: [String: Any] = [
-                                    "name": game.name,
-                                    "images": game.images.map { image in
-                                        return [
-                                            "src": image.src
-                                        ]
-                                    },
-                                    "about": game.about,
-                                    "details": game.details.map { detail in
-                                        return [
-                                            "key": detail.key,
-                                            // Add more detail properties here
-                                        ]
-                                    },
-                                    "stars": game.stars,
-                                    "age": game.age
-                                    // Add other game properties here
-                                ]
-
-                                // Add the game data to the "favorites" collection
-                                userFavoritesCollection.addDocument(data: gameData) { error in
-                                    if let error = error {
-                                        print("Error adding favorite game: \(error)")
-                                    } else {
-                                        print("Favorite game added successfully!")
-                                    }
+                            print("Error fetching favorite games: \(error)")
+                            return
+                        }
+                        
+                        if querySnapshot?.isEmpty == true {
+                            // No duplicate found, add the game to favorites
+                            let gameData: [String: Any] = [
+                                "game_id": game.id,
+                                "name": game.name,
+                                "images": game.images.map { image in
+                                    return [
+                                        "src": image.src
+                                    ]
+                                },
+                                "about": game.about,
+                                "details": game.details.map { detail in
+                                    return [
+                                        "key": detail.key,
+                                        // Add more detail properties here
+                                    ]
+                                },
+                                "stars": game.stars,
+                                "age": game.age
+                                // Add other game properties here
+                            ]
+                            
+                            // Add the game data to the "favorites" collection
+                            userFavoritesCollection.addDocument(data: gameData) { error in
+                                if let error = error {
+                                    print("Error adding favorite game: \(error)")
+                                } else {
+                                    print("Favorite game added successfully!")
                                 }
-                            } else {
-                                // Duplicate found, handle accordingly (e.g., show an error message)
-                                print("Duplicate game found. You can handle this case here.")
                             }
+                        } else {
+                            // Duplicate found, handle accordingly (e.g., show an error message)
+                            print("Duplicate game found. You can handle this case here.")
                         }
                     }
+                    
+                    // You can optionally store the listener reference for later removal if needed
+                    // self.favoriteGameListener = listener
                 }
             }
         }
     }
 
 
+    
+//    func addFavoriteGame(_ game: GameData) {
+//        if let currentUserEmail = Auth.auth().currentUser?.email {
+//            let userFavoritesCollection = Firestore.firestore().collection("users")
+//                .whereField("email", isEqualTo: currentUserEmail)
+//                .limit(to: 1) // Limit the query to 1 document (assuming emails are unique)
+//
+//            userFavoritesCollection.getDocuments { (querySnapshot, error) in
+//                if let error = error {
+//                    print("Error checking for duplicates: \(error)")
+//                } else {
+//                    guard let document = querySnapshot?.documents.first else {
+//                        print("User not found")
+//                        return
+//                    }
+//
+//                    // Get the user document ID
+//                    let userDocumentID = document.documentID
+//
+//                    // Reference to the "favorites" subcollection under the user document
+//                    let userFavoritesCollection = Firestore.firestore().collection("users").document(userDocumentID).collection("favorites")
+//
+//                    // Check if the game already exists in the user's favorites
+//                    userFavoritesCollection.whereField("id", isEqualTo: game.id).getDocuments { (querySnapshot, error) in
+//                        if let error = error {
+//                            print("Error checking for duplicates: \(error)")
+//                        } else {
+//                            if let documents = querySnapshot?.documents, documents.isEmpty {
+//                                // No duplicate found, add the game to favorites
+//                                let gameData: [String: Any] = [
+//                                    "name": game.name,
+//                                    "images": game.images.map { image in
+//                                        return [
+//                                            "src": image.src
+//                                        ]
+//                                    },
+//                                    "about": game.about,
+//                                    "details": game.details.map { detail in
+//                                        return [
+//                                            "key": detail.key,
+//                                            // Add more detail properties here
+//                                        ]
+//                                    },
+//                                    "stars": game.stars,
+//                                    "age": game.age
+//                                    // Add other game properties here
+//                                ]
+//
+//                                // Add the game data to the "favorites" collection
+//                                userFavoritesCollection.addDocument(data: gameData) { error in
+//                                    if let error = error {
+//                                        print("Error adding favorite game: \(error)")
+//                                    } else {
+//                                        print("Favorite game added successfully!")
+//                                    }
+//                                }
+//                            } else {
+//                                // Duplicate found, handle accordingly (e.g., show an error message)
+//                                print("Duplicate game found. You can handle this case here.")
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    
     func fetchFavoriteGames() {
         if let currentUserEmail = Auth.auth().currentUser?.email {
             let userFavoritesCollection = Firestore.firestore().collection("users")
@@ -235,8 +328,8 @@ class UserDataViewModel : ObservableObject {
             }
         }
     }
-
-
+    
+    
     func removeDuplicates(from games: [GameData]) -> [GameData] {
         var uniqueGames = [GameData]()
         
@@ -250,7 +343,7 @@ class UserDataViewModel : ObservableObject {
     }
     
     func deleteFavoriteGame(_ game: GameData) {
-     
+        
         if let user = Auth.auth().currentUser {
             print("User ID: \(user.uid)") // Debug: Print user ID
             
@@ -294,40 +387,41 @@ class UserDataViewModel : ObservableObject {
             }
         }
     }
-
-        
-
-    func fetchComments(forGameID gameID: String) async -> [Comment] {
-         let db = Firestore.firestore()
-            let commentsRef = db.collection("comments").whereField("gameID", isEqualTo: gameID)
-
-            var comments: [Comment] = []
-
-            do {
-                let querySnapshot = try await commentsRef.getDocuments()
-                
-                for document in querySnapshot.documents {
-                    if let commentData = document.data() as? [String: Any],
-                        let userID = commentData["userID"] as? String,
-                        let text = commentData["text"] as? String,
-                        let rating = commentData["rating"] as? Int {
+    
+    
+    
+    func fetchComments(forGameID gameID: String) {
+        let db = Firestore.firestore()
+        let commentsRef = db.collection("comments").whereField("gameID", isEqualTo: gameID)
+        commentsRef.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error fetching favorite games: \(error)")
+                return // Return early to prevent further execution in case of an error
+            } else{
+                self.comments = []
+                for document in querySnapshot!.documents {
+                    let commentData = document.data()
+                    if let userID = commentData["userID"] as? String,
+                       let text = commentData["text"] as? String,
+                       let rating = commentData["rating"] as? Int {
                         let comment = Comment(userID: userID, gameID: gameID, text: text, rating: rating)
-                        comments.append(comment)
+                        self.comments.append(comment)
+                        print(comment)
+                        
                     }
                 }
-            } catch {
-                // Handle the error
-                print("Error fetching comments: \(error)")
             }
-
-            return comments
+            
         }
+    }
     
 }
-    
-    
-    
-    
+
+
+
+
+
+
 
 
 
