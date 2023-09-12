@@ -29,7 +29,7 @@ struct ListView: View {
                         VStack{
                             ForEach(gamesData.favoriteGames, id: \.id) { game in
                                 
-                                GameComponentView(game:game)
+                                GameComponentView(game: game)
                                 
                                 
                             }
