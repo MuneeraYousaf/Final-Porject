@@ -145,62 +145,62 @@
 import SwiftUI
 import Firebase
 import FirebaseStorage
-
-struct RootView: View {
-    @State private var gameData: [GameData] = []
-    
-    var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 20) {
-                
-            }
-            .onAppear {
-                // Initialize Firebase
-                //            FirebaseApp.configure()
-                
-                // Load and parse the JSON data
-                if let jsonPath = Bundle.main.path(forResource: "gamesv2", ofType: "json"),
-                   let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
-                    
-                    let decoder = JSONDecoder()
-                    if let parsedGameData = try? decoder.decode([GameData].self, from: jsonData) {
-                        gameData = parsedGameData
-                        
-                        // Initialize Firebase Storage
-                        let storage = Storage.storage()
-                        let storageRef = storage.reference()
-                        
-                        // Upload images to Firebase Storage
-                        for game in gameData {
-                            if let imageURL = URL(string: game.images.first!.src) {
-                                let imageRef = storageRef.child("images/\(UUID().uuidString).jpg")
-                                
-                                URLSession.shared.dataTask(with: imageURL) { data, _, error in
-                                    if let error = error {
-                                        print("Error downloading image: \(error.localizedDescription)")
-                                    } else if let imageData = data {
-                                        imageRef.putData(imageData, metadata: nil) { _, error in
-                                            if let error = error {
-                                                print("Error uploading image: \(error.localizedDescription)")
-                                            } else {
-                                                print("Image uploaded successfully to Firebase Storage")
-                                            }
-                                        }
-                                    }
-                                }.resume()
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView()
-    }
-}
-
-
-
+//
+//struct RootView: View {
+//    @State private var gameData: [GameData] = []
+//    
+//    var body: some View {
+//        ScrollView {
+//            LazyVStack(spacing: 20) {
+//                
+//            }
+//            .onAppear {
+//                // Initialize Firebase
+//                //            FirebaseApp.configure()
+//                
+//                // Load and parse the JSON data
+//                if let jsonPath = Bundle.main.path(forResource: "gamesv2", ofType: "json"),
+//                   let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
+//                    
+//                    let decoder = JSONDecoder()
+//                    if let parsedGameData = try? decoder.decode([GameData].self, from: jsonData) {
+//                        gameData = parsedGameData
+//                        
+//                        // Initialize Firebase Storage
+//                        let storage = Storage.storage()
+//                        let storageRef = storage.reference()
+//                        
+//                        // Upload images to Firebase Storage
+//                        for game in gameData {
+//                            if let imageURL = URL(string: game.images.first!.src) {
+//                                let imageRef = storageRef.child("images/\(UUID().uuidString).jpg")
+//                                
+//                                URLSession.shared.dataTask(with: imageURL) { data, _, error in
+//                                    if let error = error {
+//                                        print("Error downloading image: \(error.localizedDescription)")
+//                                    } else if let imageData = data {
+//                                        imageRef.putData(imageData, metadata: nil) { _, error in
+//                                            if let error = error {
+//                                                print("Error uploading image: \(error.localizedDescription)")
+//                                            } else {
+//                                                print("Image uploaded successfully to Firebase Storage")
+//                                            }
+//                                        }
+//                                    }
+//                                }.resume()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+////struct ContentView_Previews: PreviewProvider {
+////    static var previews: some View {
+////        RootView()
+////    }
+////}
+//
+//
+//

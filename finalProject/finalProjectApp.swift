@@ -40,11 +40,8 @@ struct finalProjectApp: App {
                         }
                     }
                 }
-                //            ProfileView()
-                //            FavoritesView().environmentObject(UserData)
-                
-                //            mainView()
-//            }
+
+
         }
     }
 }

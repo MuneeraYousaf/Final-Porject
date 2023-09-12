@@ -38,7 +38,7 @@ struct ImageProfileView: View {
                 //                if isButtonVisible {
                 //يحفظ الصوره في firebase
                 Button("Save Image") {
-                    vm.UploadImage()
+                    vm.UploadImage(forUserId: "")
                     
                     if vm.showNextPage{
                         dismiss()

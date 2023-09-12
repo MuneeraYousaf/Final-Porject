@@ -17,21 +17,23 @@ struct mainView: View {
     var body: some View {
         NavigationView{
         ZStack{
-                        Color.clear
-                            .ignoresSafeArea(.all, edges: .bottom)
+            Color.clear
+                .ignoresSafeArea(.all, edges: .bottom)
+            TabView(selection: $activeTab){
+                HomeView()
+                    .tag(Tab.home)
+                ListView()
+                    .tag(Tab.list)
+                
+                ProfileView()
+                    .tag(Tab.profile)
+            }
+            
             VStack {
-                TabView(selection: $activeTab){
-                    HomeView()
-                        .tag(Tab.home)
-                    ListView()
-                        .tag(Tab.list)
-                    
-                    ProfileView()
-                        .tag(Tab.profile)
-                }.background(Color.clear)
+                Spacer()
                 CustomTabBar()
             }
-           
+
         }
         }
         

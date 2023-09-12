@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 struct GameData: Codable{
-    let id: String
+    var id = UUID().uuidString
     let name: String
     let images: [images]
     let about: String

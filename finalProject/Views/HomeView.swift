@@ -14,9 +14,64 @@ struct HomeView: View {
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
 
+//            VStack{
+//                VStack{
+//
+//                    Image("logo")
+//
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 60, height: 40, alignment: .center)
+//                        .padding(-5)
+//                    Text("Games Vault")
+//                        .font(
+//                            .custom(
+//                                "SairaSemiCondensed-SemiBold",
+//                                fixedSize: 20)
+//                            .weight(.medium)
+//                        )
+//
+//                        .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-10)
+//
+//                }
+//                .padding(10)
+//
+//                // MARK: Search Text Field
+//                VStack{
+//                    TextField("Text search", text: $searchText)
+//                        .padding()
+//                        .frame(height:40)
+//                        .background(Color(white: 0.97))
+//                        .cornerRadius(16)
+//
+//                }.padding(.horizontal)
+//                HStack{
+//                    Text("Text categories")
+//                        .foregroundColor(.gray)
+//                    Picker("Select Category", selection: $selectedCatregryIndex) {
+//                        ForEach(0..<categoryRanges.count, id: \.self) { index in
+//                            Text(categoryRanges[index])
+//                        }
+//                    }
+//                    .pickerStyle(.menu)
+//                    .accentColor(.black)
+//                    Text("Text Platforms")
+//                        .foregroundColor(.gray)
+//                    Picker("Select Age", selection: $selectedAgeIndex) {
+//                        ForEach(0..<ageRanges.count, id: \.self) { index in
+//                            Text(ageRanges[index])
+//                        }
+//                    }
+//                    .pickerStyle(.menu)
+//                    .accentColor(.black)
+//
+//                }
+//                .padding(2)
+        ZStack {
+            BackgroundView()
             VStack{
                 VStack{
-
+                    
                     Image("logo")
                     
                         .resizable()
@@ -30,9 +85,9 @@ struct HomeView: View {
                                 fixedSize: 20)
                             .weight(.medium)
                         )
-       
+                    
                         .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-10)
-               
+                    
                 }
                 .padding(10)
                 
@@ -55,6 +110,7 @@ struct HomeView: View {
                     }
                     .pickerStyle(.menu)
                     .accentColor(.black)
+                    //                Spacer()
                     Text("Text Platforms")
                         .foregroundColor(.gray)
                     Picker("Select Age", selection: $selectedAgeIndex) {
@@ -65,47 +121,53 @@ struct HomeView: View {
                     .pickerStyle(.menu)
                     .accentColor(.black)
                     
-                }
-                
+                }.padding(.horizontal)
+                //                .foregroundColor(.clear)
                 ScrollView(showsIndicators:false){
                     ForEach(filteredGames, id: \.id) { game in
                         NavigationLink(
                             destination: {
                                 DetailsGameView(game: game)
                             }, label: {
-                                GameView(game: game).frame(width: 400, height: 200)}
+                                GameView(game: game).frame(width: 360, height: 200)
+                                
+                            }
                         )
                     }
+                    Rectangle()
+                        .frame(height: 100)
+                        .foregroundColor(.clear)
                 }
-              
-
-        var filteredGames: [GameData] {
-            var filteredGames = gamesData.games
-            
-            // Apply age-based filtering
-            if selectedAgeIndex != 0 {
-                let selectedAge = ageRanges[selectedAgeIndex]
-                filteredGames = filteredGames.filter { game in
-                    return game.age.lowercased() == selectedAge.lowercased()
+                
+                
+                var filteredGames: [GameData] {
+                    var filteredGames = gamesData.games
+                    
+                    // Apply age-based filtering
+                    if selectedAgeIndex != 0 {
+                        let selectedAge = ageRanges[selectedAgeIndex]
+                        filteredGames = filteredGames.filter { game in
+                            return game.age.lowercased() == selectedAge.lowercased()
+                        }
+                    }
+                    //MARK:
+                    //            if selectedCatregryIndex != 0 {
+                    //                let selectedAge = categoryRanges[selectedCatregryIndex]
+                    //                filteredGames = filteredGames.filter { game in
+                    //                    return game.details.first(where: { $0.key == "Release date" }).lowercased() == selectedAge.lowercased()
+                    //                }
+                    //            }
+                    
+                    // Apply search-based filtering
+                    if !searchText.isEmpty {
+                        filteredGames = filteredGames.filter { game in
+                            return game.name.lowercased().contains(searchText.lowercased())
+                        }
+                    }
+                    
+                    return filteredGames
                 }
             }
-            //MARK:
-//            if selectedCatregryIndex != 0 {
-//                let selectedAge = categoryRanges[selectedCatregryIndex]
-//                filteredGames = filteredGames.filter { game in
-//                    return game.details.first(where: { $0.key == "Release date" }).lowercased() == selectedAge.lowercased()
-//                }
-//            }
-            
-            // Apply search-based filtering
-            if !searchText.isEmpty {
-                filteredGames = filteredGames.filter { game in
-                    return game.name.lowercased().contains(searchText.lowercased())
-                }
-            }
-            
-            return filteredGames
-        }
         }
 //            }
 //            .fullScreenCover(isPresented: $show, content: DetailsGameView.init)
