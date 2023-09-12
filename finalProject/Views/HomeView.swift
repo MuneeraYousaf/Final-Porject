@@ -1,10 +1,4 @@
-////
-////  HomeView.swift
-////  finalProject
-////
-////  Created by Sarah on 04/09/2023.
-////
-//
+
 import SwiftUI
 
 struct HomeView: View {
@@ -19,13 +13,10 @@ struct HomeView: View {
 
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
-//        NavigationView{
-            //        GeometryReader {geometry in
+
             VStack{
                 VStack{
-                    //                Image(systemName: "line.3.horizontal")
-                    //                    Spacer()
-                    //                    Text("Games Vault")
+
                     Image("logo")
                     
                         .resizable()
@@ -39,26 +30,13 @@ struct HomeView: View {
                                 fixedSize: 20)
                             .weight(.medium)
                         )
-                    //                         )
+       
                         .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-10)
-                    //                    Spacer()
-                    //                    AsyncImage(url:URL(string:  "https://source.unsplash.com/40x40/?person"))
-                    //                        .scaledToFit()
-                    //                        .frame(width: 40, height: 40)
-                    //                        .cornerRadius(16)
+               
                 }
                 .padding(10)
                 
-                //                HStack{
-                //                    Image(systemName: "magnifyingglass")
-                //                    TextField("Search Game..", text: $searchedText)
-                //                }
-                //                .padding()
-                //
-                //                .background(RoundedRectangle(cornerRadius: 12.5)
-                //                    .fill(.gray.opacity(0.25)))
-                //                .padding(.horizontal)
-                // Search Text Field
+                // MARK: Search Text Field
                 VStack{
                     TextField("Text search", text: $searchText)
                         .padding()
@@ -70,16 +48,6 @@ struct HomeView: View {
                 HStack{
                     Text("Text categories")
                         .foregroundColor(.gray)
-                    //                    Picker("", selection: $gametype) {
-                    //                        Text("Text all")
-                    //                            .tag(GameType.all)
-                    //                        Text("Text action")
-                    //                            .tag(GameType.action)
-                    //                        Text("Text adventure")
-                    //                            .tag(GameType.adventure)
-                    //                        Text("Text sports")
-                    //                            .tag(GameType.sports)
-                    //                    }
                     Picker("Select Category", selection: $selectedCatregryIndex) {
                         ForEach(0..<categoryRanges.count, id: \.self) { index in
                             Text(categoryRanges[index])
@@ -89,17 +57,6 @@ struct HomeView: View {
                     .accentColor(.black)
                     Text("Text Platforms")
                         .foregroundColor(.gray)
-                    
-                    //                    Picker("", selection: $platforms) {
-                    //                        Text("Text PlayStation")
-                    //                            .tag(PlatForm.PlayStation)
-                    //                        Text("Text NintendoSwitch")
-                    //                            .tag(PlatForm.NintendoSwitch)
-                    //                        Text("Text Windows")
-                    //                            .tag(PlatForm.Windows)
-                    //                        Text("Text Xbox")
-                    //                            .tag(PlatForm.Xbox)
-                    //                    }
                     Picker("Select Age", selection: $selectedAgeIndex) {
                         ForEach(0..<ageRanges.count, id: \.self) { index in
                             Text(ageRanges[index])
@@ -116,38 +73,12 @@ struct HomeView: View {
                             destination: {
                                 DetailsGameView(game: game)
                             }, label: {
-                                GameView(game: game).frame(width: .infinity, height: 200)}
+                                GameView(game: game).frame(width: 400, height: 200)}
                         )
                     }
                 }
-                
-                //                                    ZStack {
-                //                                        if !show {
-                //
-                //                                            GameView()
-                ////                                                .padding()
-                //
-                //                                        } else {
-                //                                            DetailsGameView()
-                //                                    .padding()
-                //                                .transition(.move(edge: .trailing))
-                //                                .zIndex(1)
-                ////                                                .fullScreenCover(isPresented: $show, content: DetailsGameView.init)
-                ////                                                .navigationBarBackButtonHidden(true)
-                //
-                //                                        }
-                //                                    }
-                //                                    .onTapGesture {
-                //                                        withAnimation(.spring()) {
-                //                                            show.toggle()
-                //                                        }
-            }
-           
-//        }
-       
-//                } .onAppear(){
-//                    gamesData.fetchGames()
-//                }
+              
+
         var filteredGames: [GameData] {
             var filteredGames = gamesData.games
             
@@ -178,7 +109,7 @@ struct HomeView: View {
         }
 //            }
 //            .fullScreenCover(isPresented: $show, content: DetailsGameView.init)
-//        }
+        }
 
     
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct GameView: View {
     var game: GameData
     @EnvironmentObject var gamesData: UserDataViewModel
+    @State private var isFavorite = false
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -13,62 +14,72 @@ struct GameView: View {
                         .cornerRadius(16)
                     
                     HStack {
-                        VStack(spacing: 4) {
-                            Image("Game 1")
-                                .resizable()
-                                .frame(width: 180, height: 200)
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            Text(game.name)
-                                .font(.system(size: 20))
-                                .bold()
-                                .padding(2)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                            HStack {
-//                                Text("4.0")
-//                                    .font(.system(size: 9))
-                                RatingView(rating: .constant(game.stars))
-                                    .font(.system(size: 9))
+                        if game.images.indices.contains(1) {
+                            // Check if the array contains an element at index 1
+                            AsyncImage(url: URL(string: game.images[1].src)) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 180, height: 200)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                            } placeholder: {
+                                ProgressView()
+                                    .frame(width: 180, height: 200)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
                             }
-                            .padding(2)
-                            Text(game.age)
-                                .padding(2)
-                            
-                            if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
+                        } else {
+                            // Handle the case when index 1 is out of range
+                            Text("Image not available")
+                        }
+                            VStack(alignment: .leading) {
+                    
+                                Text(game.name)
+                                    .font(.system(size: 20))
+                                    .bold()
+                                    .padding(2)
+                                    .frame(maxWidth: .infinity,alignment: .leading)
+
+                                    .multilineTextAlignment(.leading)
                                 HStack {
-                                    Text(releaseDateDetail.values.joined(separator: ", "))
-                                        .font(.footnote)
+                                    Text(Double(game.stars).description)
+                                        .font(.system(size: 15))
+                                    RatingView(rating: .constant(game.stars))
+                                        .font(.system(size: 15))
                                 }
+                                .padding(.top)
+                                
+                                Text(game.age)
+                                
+                                if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
+                                    HStack {
+                                        Text(releaseDateDetail.values.joined(separator: ", "))
+                                            .font(.footnote)
+                                    }
+                                }
+                                
                             }
-                        }
-                        .padding(2)
+                           
+                        Button(action: {
+                            if !isFavorite {
+                                gamesData.addFavoriteGame(game)
+                            }
+                            isFavorite.toggle()
+                        }) {
+                            Image(systemName: "heart")
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.white)
+                                .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
+                                .overlay(RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
+                                .cornerRadius(16)
+                        }.frame(maxWidth: .infinity, alignment: .bottomTrailing)
                         
-                        
+                            .padding(.vertical, -100)
+
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Button(action: {
-                                gamesData.addFavoriteGame(game)
-                            }) {
-                                Image(systemName: "heart")
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.white)
-                                    .background(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196))
-                                    .overlay(RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color(red: 0.043137254901960784, green: 0.1411764705882353, blue: 0.2784313725490196), lineWidth: 4))
-                                    .cornerRadius(16)
-                            }
-                            Spacer()
-                        }
-                    }
+            
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
+
                 .padding(.horizontal)
             }
         }

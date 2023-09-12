@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 struct CommentView: View {
 //    var game: GameData
-    @State var Comment = ""
-    @State private var commentText = ""
-    @State private var userRating = 0
+    @State var comment = ""
+    @State  var commentText = ""
+    @State  var userRating = 0
+    var game: GameData
+    
+    @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         ScrollView{
             
@@ -22,11 +25,11 @@ struct CommentView: View {
                     .cornerRadius(16)
                 VStack{
                     HStack{
-                        AsyncImage(url:URL(string:  "https://source.unsplash.com/40x40/?person"))
+                        AsyncImage(url:URL(string:  "(https://source.unsplash.com/40x40/?person"))
                             .scaledToFit()
                             .frame(width: 40, height: 40)
                             .cornerRadius(16)
-                        Text("Username")
+                        Text(gamesData.userss.username)
                         
                     } .frame(maxWidth: .infinity,alignment: .leading)
 //                    RatingView(rating: .constant(0))
@@ -34,7 +37,7 @@ struct CommentView: View {
                         .font(Font.custom("Saira SemiCondensed", size: 12))
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity,alignment: .leading)
-                    TextEditor(text: $Comment)
+                    TextEditor(text: $comment)
 //                    .frame(maxHeight : 56)
                     .background()
                     Spacer()
@@ -42,12 +45,16 @@ struct CommentView: View {
                     
                         Spacer()
                         Button {
-//                            let newComment = Comment(userID: "V3ecxeslnCBp2kQGoHHp", gameID: GameData., text: commentText, rating: userRating)
-//                            userDataViewModel.addComment(newComment)
-
-                            // Clear the comment input and rating
-                            commentText = ""
-                            userRating = 0
+                            if  let currenruser = Auth.auth().currentUser?.email {
+                                let newComment = Comment(userID: currenruser, gameID: game.id, text: comment, rating: userRating)
+                                gamesData.addComment(newComment)
+                                
+                                // Clear the comment input and rating
+                                comment = ""
+                                userRating = 0
+                            }else {
+                                //MARK: Show Alart
+                            }
                         } label: {
                             Text("Text rating")
     //                         .padding()
@@ -64,60 +71,37 @@ struct CommentView: View {
                 } .frame(maxWidth: .infinity,alignment: .leading)
                 
             }.padding(.horizontal)
-            HStack{
-                ZStack{
-                    Rectangle()
-                        .foregroundColor(Color(white: 0.97))
-                        .frame(width: 360,height: 150)
-                        .cornerRadius(16)
-                    VStack{
-                        HStack{
-                            AsyncImage(url:URL(string:  "https://source.unsplash.com/40x40/?person"))
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(16)
-                            Text("Username")
-                            
-                        }
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                       
-                        RatingView(rating: .constant(4))
-                            .font(Font.custom("Saira SemiCondensed", size: 12))
-                            .fontWeight(.medium)
+            ForEach(gamesData.comments, id: \.id){ comments in
+                HStack{
+                    ZStack{
+                        Rectangle()
+                            .foregroundColor(Color(white: 0.97))
+                            .frame(width: 360,height: 150)
+                            .cornerRadius(16)
+                        VStack{
+                            HStack{
+                                AsyncImage(url:URL(string:  "https://source.unsplash.com/40x40/?person"))
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .cornerRadius(16)
+                                Text(comments.gameID)
+                                
+                            }
                             .frame(maxWidth: .infinity,alignment: .leading)
-                        Spacer()
+                            
+                            RatingView(rating: .constant(comments.rating))
+                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                .fontWeight(.medium)
+                                .frame(maxWidth: .infinity,alignment: .leading)
+                            Spacer()
+                            Text(comments.text)
+                        }
+                        
                     }
-                    
                 }
             }
             .padding(.horizontal)
-            HStack{
-                ZStack{
-                    Rectangle()
-                        .foregroundColor(Color(white: 0.97))
-                        .frame(width: 360,height: 150)
-                        .cornerRadius(16)
-                    VStack{
-                        HStack{
-                            AsyncImage(url:URL(string:  "https://source.unsplash.com/40x40/?person"))
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(16)
-                            Text("Username")
-                            
-                        }
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                       
-                        RatingView(rating: .constant(2))
-                            .font(Font.custom("Saira SemiCondensed", size: 12))
-                            .fontWeight(.medium)
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                        Spacer()
-                    }
-                    
-                }
-            }
-            .padding(.horizontal)
+           
         }
     }
 }

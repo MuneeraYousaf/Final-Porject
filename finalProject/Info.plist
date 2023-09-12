@@ -4,9 +4,15 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
+		<string>SairaSemiCondensed-SemiBold.ttf</string>
 	</array>
-	<key>SairaSemiCondensed-SemiBold</key>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleExecutable</key>
+	<string></string>
+	<key>SairaSemiCondensed-SemiBold.ttf</key>
 	<string>SairaSemiCondensed-SemiBold.ttf</string>
+	<key></key>
+	<string></string>
 </dict>
 </plist>

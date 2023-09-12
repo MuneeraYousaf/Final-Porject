@@ -9,18 +9,26 @@ import SwiftUI
 import FirebaseAuth
 
 struct SignIn: View {
-    @State var email: String = ""
+    @State var emails: String = ""
     @State var password: String = ""
     @State var repassword: String = ""
     @State var showNextPage: Bool = false
+    @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         NavigationView{
             ZStack{
                 BackgroundView()
                 if showNextPage == true{
-                    
-                    Text("hello")
+                    mainView()
+                        .onAppear(){
+                   
+                    gamesData.fetchGames()
+                    gamesData.fetchFavoriteGames()
+                   
+                }
+                
                 }else{
+                    
                     VStack {
                         Spacer()
                         //                    HStack{
@@ -59,7 +67,7 @@ struct SignIn: View {
                         }
                         .padding()
                         Spacer()
-                        TextField("Text1", text: $email).padding(.leading)
+                        TextField("Text1", text: $emails).padding(.leading)
                             .frame(width: 360, height: 60).background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902)).cornerRadius(7)
                         //                        .padding()
                         //                        .position(x: 200, y: 445)
@@ -69,7 +77,7 @@ struct SignIn: View {
                             .padding()
                         Button(action: {
                             //
-                            signIn(email, password)
+                            signIn(emails, password)
                         }, label: {
                             Text("Text3").frame(width: 360, height: 60).background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684)).foregroundColor(.white)
                                 .cornerRadius(16)
@@ -84,7 +92,8 @@ struct SignIn: View {
 //                                Text("Text5")
 //                            })
                             NavigationLink(
-                                destination: SignUp()) {
+                                destination: SignUp()
+                                 ) {
                                     Text("Text5")
                                     //                            Image(systemName: "arrow.right.square")
                                 }.buttonStyle(.plain)
@@ -115,9 +124,12 @@ struct SignIn: View {
             if errors != nil {
                 // Handle and print any sign-in errors
                 print("Error occurred during sign-in.")
-            } else {
-                // Sign-in was successful, set a flag to show the next page
-                showNextPage = true
+            }
+            else if let user = result?.user {
+                 showNextPage = true
+//                gamesData.fetchUsers()
+                   print("User's Email: \(email)")
+
             }
         }
     }

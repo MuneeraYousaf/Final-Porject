@@ -8,49 +8,62 @@
 import SwiftUI
 
 struct mainView: View {
-    @State private var activeTab: Tab = . home
+    @State private var activeTab: Tab = .home
     @Namespace private var animation
+    @State private var user: UserModel?
     
     init(){UITabBar.appearance () . isHidden = true}
     
     var body: some View {
         NavigationView{
         ZStack{
+                        Color.clear
+                            .ignoresSafeArea(.all, edges: .bottom)
             VStack {
                 TabView(selection: $activeTab){
                     HomeView()
                         .tag(Tab.home)
                     ListView()
                         .tag(Tab.list)
+                    
                     ProfileView()
                         .tag(Tab.profile)
-                }
+                }.background(Color.clear)
                 CustomTabBar()
             }
+           
         }
         }
+        
         .buttonStyle(.plain)
     }
     @ViewBuilder
     func CustomTabBar(_ tint: Color = Color.white, _ inactiveTint: Color = .gray) ->   some View {
-        HStack(alignment: .center){
-            ForEach(Tab.allCases , id: \.rawValue){
-                TabItem(tint: tint,
-                        inactiveTint: inactiveTint,
-                        tab: $0 ,
-                        animation: animation,
-                        activeTab: $activeTab)
-//                .padding()
-            }
-        }
-        .frame(height: 80 )
-        .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
+        ZStack {
 
-        .animation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration:
-                                        0.7), value: activeTab)
-        .cornerRadius(100)
-        .padding()
-       
+            HStack(alignment: .center){
+                ForEach(Tab.allCases , id: \.rawValue){
+                    TabItem(tint: tint,
+                            inactiveTint: inactiveTint,
+                            tab: $0 ,
+                            animation: animation,
+                            activeTab: $activeTab)
+                    
+                    //                .padding()
+                }
+            }
+            
+            
+            
+            .frame(height: 60 )
+            .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
+            //        .background(Color.clear)
+            
+            .animation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration:
+                                            0.7), value: activeTab)
+            .cornerRadius(100)
+            .padding()
+        }
     }
 }
 
@@ -75,7 +88,7 @@ struct TabItem: View {
                 .font (.title2)
                 .foregroundColor (activeTab == tab ? .black : .gray)
                 .frame(width: activeTab == tab ? 28 : 24, height: activeTab == tab ? 28: 24)
-                .frame(width: 64, height: 64)
+                .frame(width: 55, height: 55)
                 .background {
                     if activeTab == tab {
                         Circle()
