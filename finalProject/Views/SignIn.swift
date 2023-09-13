@@ -13,6 +13,7 @@ struct SignIn: View {
     @State var password: String = ""
     @State var repassword: String = ""
     @State var showNextPage: Bool = false
+    @State private var signInError: String = ""
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
         NavigationView{
@@ -70,6 +71,8 @@ struct SignIn: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(16)
                         })
+                        Text(signInError)
+                        .foregroundColor(.red)
                         Spacer()
                         HStack{
                             Text("Text4")
@@ -95,9 +98,10 @@ struct SignIn: View {
     // Function for signing in with email and password
     func signIn(_ email: String, _ pass: String) {
         // Use Firebase Authentication to sign in with the provided email and password
-        Auth.auth().signIn(withEmail: email, password: pass) { result, errors in
-            if errors != nil {
+        Auth.auth().signIn(withEmail: email, password: pass) { result, error in
+            if let error = error {
                 print("Error occurred during sign-in.")
+                signInError = error.localizedDescription
             }
             else if let user = result?.user {
                 showNextPage = true

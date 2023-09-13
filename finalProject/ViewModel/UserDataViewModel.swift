@@ -36,7 +36,28 @@ class UserDataViewModel : ObservableObject {
         userDocRef.updateData(userData)
     }
     
-    func addUser(username: String, email: String, phone: String, image: String) {
+//    func addUser(username: String, email: String, phone: String, image: String, userid: String) {
+//        // Create a dictionary with the user data.
+//        let userData: [String: Any] = [
+//            "username": username,
+//            "email": email,
+//            "phone": phone,
+//            "image": image
+//        ]
+//
+//        // Reference the Firestore collection "users".
+//        let usersCollection = Firestore.firestore().collection("users")
+//
+//        // Add the document to the "users" collection.
+//        usersCollection.document(userid).addDocument(data: userData) { error in
+//            if let error = error {
+//                print("Error adding user document: \(error)")
+//            } else {
+//                print("User document added successfully!")
+//            }
+//        }
+//    }
+    func addUser(username: String, email: String, phone: String, image: String, userid: String) {
         // Create a dictionary with the user data.
         let userData: [String: Any] = [
             "username": username,
@@ -45,11 +66,11 @@ class UserDataViewModel : ObservableObject {
             "image": image
         ]
         
-        // Reference the Firestore collection "users".
-        let usersCollection = Firestore.firestore().collection("users")
+        // Reference the Firestore document for the user using the provided userid.
+        let userDocumentRef = Firestore.firestore().collection("users").document(userid)
         
-        // Add the document to the "users" collection.
-        usersCollection.addDocument(data: userData) { error in
+        // Set the data for the user document.
+        userDocumentRef.setData(userData) { error in
             if let error = error {
                 print("Error adding user document: \(error)")
             } else {
@@ -57,6 +78,7 @@ class UserDataViewModel : ObservableObject {
             }
         }
     }
+
     func fetchUsers() {
         let currenUser = Auth.auth().currentUser?.email
         let email = "email"

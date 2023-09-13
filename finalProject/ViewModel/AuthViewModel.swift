@@ -23,6 +23,7 @@ class AuthViewModel: ObservableObject {
 //            }
 //        }
 //    }
+
     
     func signOut() {
         do {

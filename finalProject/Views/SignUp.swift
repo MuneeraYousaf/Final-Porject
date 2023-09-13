@@ -16,6 +16,7 @@ struct SignUp: View {
     @State var password: String = ""
     @State var repassword: String = ""
     @State var showNextPage: Bool = false
+    @State private var signUpError: String = ""
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var gamesData: UserDataViewModel
     var body: some View {
@@ -109,6 +110,8 @@ struct SignUp: View {
                             
                                 .cornerRadius(16)
                         }).padding(.vertical, 40)
+                        Text(signUpError)
+                        .foregroundColor(.red)
                         Spacer()
                         HStack{
                             Text("Text14")
@@ -129,22 +132,27 @@ struct SignUp: View {
     // Function for user registration (sign-up) using email and password
     func signUp(_ email: String, _ pass: String) {
         // Use Firebase Authentication to create a new user with the provided email and password
-        Auth.auth().createUser(withEmail: email, password: pass) { results, errors in
-            if let error = errors {
+        Auth.auth().createUser(withEmail: email, password: pass) { result, error in
+            if let error = error {
                 // Handle and print any registration errors
                 print("Error occurred during user registration: \(error.localizedDescription)")
-            } else {
+                signUpError = error.localizedDescription
+            } else if let user = result?.user {
                 // Registration was successful, print a success message
                 print("User registration successful.")
                 
-                // Add user data to your user management system (e.g., userData) if needed
-                gamesData.addUser(username: userName.lowercased(), email: email, phone: phone, image: "")
+                // Access the user's UID
+                let uid = user.uid
+                
+                // Now you can use the uid as needed, for example, adding it to your user management system
+                gamesData.addUser(username: userName.lowercased(), email: email.lowercased(), phone: phone, image: "", userid: uid)
                 
                 // Set a flag to indicate that the next page should be shown
                 showNextPage = true
             }
         }
     }
+
 
     // Function for authentication, checking if passwords match, and triggering user registration
     func authentication(_ password: String, _ rpassword: String, _ email: String) {
