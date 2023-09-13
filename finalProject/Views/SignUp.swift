@@ -45,7 +45,7 @@ struct SignUp: View {
                     VStack {
                         Spacer()
                         Text("Text8")
-                            .font(Font.custom("BodoniFLF-BoldItalic", size: 34))
+                            .font(Font.custom("Saira SemiCondensed", size: 34))
                             .padding(.vertical, 40)
                         
                         VStack{
@@ -61,7 +61,7 @@ struct SignUp: View {
                                 .padding(.leading)
                                 .frame(width: 360, height: 60)
                                 .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
-                            
+                                .keyboardType(.emailAddress)
                                 .cornerRadius(7)
                                 .padding(.vertical,8)
                             
@@ -71,6 +71,7 @@ struct SignUp: View {
                                 .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
                                 .cornerRadius(7)
                                 .padding(.vertical,10)
+                                .keyboardType(.numberPad)
                             
                             SecureField("Text12", text: $password)
                                 .padding(.leading)
@@ -78,6 +79,7 @@ struct SignUp: View {
                                 .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
                                 .cornerRadius(7)
                                 .padding(.vertical,8)
+                              
                             
                             
                             
@@ -102,7 +104,9 @@ struct SignUp: View {
                             Text("Text15")
                                 .frame(width: 360, height: 60)
                                 .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
+                                .font(Font.custom("Saira SemiCondensed", size: 20))
                                 .foregroundColor(.white)
+                            
                                 .cornerRadius(16)
                         }).padding(.vertical, 40)
                         Spacer()
@@ -113,22 +117,8 @@ struct SignUp: View {
                             dismiss()
                                 }, label: {
                                 Text("Text7")
+                                        .font(Font.custom("Saira SemiCondensed", size: 15))
                                 })
-//                            NavigationLink(
-//                                destination: SignIn() ) {
-//                                    Text("Text7")
-//                                    //                            Image(systemName: "arrow.right.square")
-//                                }
-//                            //                            .buttonStyle(.plain)
-//                                .foregroundColor(.blue)
-//                        }
-                        //                    Button(action: {
-                        //                        //                    SignUp()
-                        //
-                        //                    }, label: {
-                        //                        Text("Centnue as Gusst").foregroundColor(.black)
-                        //                    })
-                        
                     }
                     
                 }
@@ -148,7 +138,7 @@ struct SignUp: View {
                 print("User registration successful.")
                 
                 // Add user data to your user management system (e.g., userData) if needed
-                gamesData.addUser(username: userName, email: email, phone: phone, image: "")
+                gamesData.addUser(username: userName.lowercased(), email: email, phone: phone, image: "")
                 
                 // Set a flag to indicate that the next page should be shown
                 showNextPage = true

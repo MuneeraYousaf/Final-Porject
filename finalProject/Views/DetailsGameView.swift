@@ -130,10 +130,18 @@ struct DetailsGameView: View {
                                     .bold()
                                     .font(Font.custom("Saira SemiCondensed", size: 19))
                                     .padding(2)
-                                Text("Square Enix")
-                                
-                                    .font(Font.custom("Saira SemiCondensed", size: 12))
-                                    .fontWeight(.medium)
+                                if let PublisherDateDetail = game.details.first(where: { $0.key == "Publisher" }) {
+                                    HStack {
+                                        //
+                                        
+                                        if let publisher = PublisherDateDetail.values.first {
+                                            
+                                            Text(publisher)
+                                                .font(Font.custom("Saira SemiCondensed", size: 12))
+                                                .fontWeight(.medium)
+                                        }
+                                    }
+                                }
                             }
                             .padding(10)
                             Divider()

@@ -21,35 +21,19 @@ struct SignIn: View {
                 if showNextPage == true{
                     mainView()
                         .onAppear(){
-                   
-                    gamesData.fetchGames()
-                    gamesData.fetchFavoriteGames()
-                   
-                }
-                
+                            
+                            gamesData.fetchGames()
+                            gamesData.fetchFavoriteGames()
+                            
+                        }
+                    
                 }else{
                     
                     VStack {
                         Spacer()
-                        //                    HStack{
-                        //                    Image(systemName: "swift")
-//                        Image("logo")
-//
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 60, height: 40, alignment: .center)
-////                            .padding(-5)
-//                        Text("Games Vault")
-//                            .font(
-//                                .custom(
-//                                    "SairaSemiCondensed-SemiBold",
-//                                    fixedSize: 20)
-//                                .weight(.medium)
-//                            )
-//                        //                         )
-//                            .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding()
+           
                         VStack(){
-//                            Spacer()
+
                             Image("logo")
                             
                                 .resizable()
@@ -58,26 +42,22 @@ struct SignIn: View {
                             Text("Games Vault")
                                 .font(
                                     .custom(
-                                        "SairaSemiCondensed-SemiBold",
+                                        "Saira SemiCondensed",
                                         fixedSize: 35)
                                     .weight(.medium)
                                 )
-                            //                         )
                                 .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514)).padding(-28)
                         }
                         .padding()
                         Spacer()
                         TextField("Text1", text: $emails).padding(.leading)
                             .frame(width: 360, height: 60).background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902)).cornerRadius(7)
-                        //                        .padding()
-                        //                        .position(x: 200, y: 445)
-                        
+             
                         SecureField("Text2", text: $password)
                             .padding(.leading)
                             .frame(width: 360, height: 60)
                             .background(Color(red: 0.9607843137254902, green: 0.9607843137254902, blue: 0.9607843137254902))
                             .cornerRadius(7)
-                        //                SecureField("Enter rePassword", text: $repassword)
                             .padding()
                         Button(action: {
                             //
@@ -85,6 +65,7 @@ struct SignIn: View {
                         }, label: {
                             Text("Text3")
                                 .frame(width: 360, height: 60)
+                                .font(Font.custom("Saira SemiCondensed", size: 20))
                                 .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
                                 .foregroundColor(.white)
                                 .cornerRadius(16)
@@ -92,35 +73,22 @@ struct SignIn: View {
                         Spacer()
                         HStack{
                             Text("Text4")
-//                            Button(action: {
-//                                //                    SignUp()
-//                                
-//                            }, label: {
-//                                Text("Text5")
-//                            })
+                                .font(Font.custom("Saira SemiCondensed", size: 15))
                             NavigationLink(
                                 destination: SignUp()
-                                 ) {
-                                    Text("Text5")
-                                    //                            Image(systemName: "arrow.right.square")
-                                }.buttonStyle(.plain)
-                                .foregroundColor(.blue)
-                        }
-                        NavigationLink(
-                            destination: mainView().navigationBarBackButtonHidden(true) ) {
-                                Text("Text6")
-                                //                            Image(systemName: "arrow.right.square")
+                            ) {
+                                Text("Text5")
+                                    .font(Font.custom("Saira SemiCondensed", size: 15))
                             }.buttonStyle(.plain)
-//                        Button(action: {
-//                            //                    SignUp()
-//
-//                        }, label: {
-//                            Text("Text6").foregroundColor(.black)
-//                        })
+                                .foregroundColor(.blue)
+                            
+                        }
                         
                     }
                     
                 }
+                
+                
             }
         } .navigationBarBackButtonHidden(true)
     }
@@ -129,18 +97,17 @@ struct SignIn: View {
         // Use Firebase Authentication to sign in with the provided email and password
         Auth.auth().signIn(withEmail: email, password: pass) { result, errors in
             if errors != nil {
-                // Handle and print any sign-in errors
                 print("Error occurred during sign-in.")
             }
             else if let user = result?.user {
-                 showNextPage = true
-//                gamesData.fetchUsers()
-                   print("User's Email: \(email)")
-
+                showNextPage = true
+                
+                print("User's Email: \(email)")
+                
             }
         }
     }
-
+    
     // Function for authentication, checking if passwords match, and triggering sign-in
     func authentication(_ password: String, _ rpassword: String, _ email: String) {
         if password == rpassword {
@@ -152,7 +119,7 @@ struct SignIn: View {
             print("Passwords do not match.")
         }
     }
-
+    
 }
 
 struct SignIn_Previews: PreviewProvider {
