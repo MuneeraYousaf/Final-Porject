@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  a
-//
-//  Created by Sarah on 12/09/2023.
-//
 
 import SwiftUI
 struct OnBoarding {
@@ -14,8 +8,8 @@ struct OnBoarding {
 private let OnBoardingStep = [
     OnBoarding(image: "OnBoarding1", titel: "Gaming Community", description: "The application consolidates all the games in a single platform"),
     OnBoarding(image: "OnBoarding2", titel: "Reviews", description: "Viewing all the comments  and reviews on a game.")
-//    OnBoarding(image: "OnBoarding11", titel: "", description: "")
-
+    //    OnBoarding(image: "OnBoarding11", titel: "", description: "")
+    
 ]
 
 struct Onbording: View {
@@ -47,7 +41,8 @@ struct Onbording: View {
                                     .padding(.top, 16)
                                 
                                 Text(OnBoardingStep[it].titel)
-                                    .font(.title)
+                                    .font(Font.custom("Saira SemiCondensed", size: 30))
+                                //                                    .font(.title)
                                     .bold()
                                     .foregroundColor(Color(red: 0.163, green: 0.289, blue: 0.514))
                                 
@@ -79,26 +74,26 @@ struct Onbording: View {
                         }
                     }
                     Button(action: {
-                                                  if self.currentStep < OnBoardingStep.count - 1 {
-                                                        self.currentStep += 1
-                                                    } else {
-                                                        self.isOnboardingComplete = true
-                                                    }
-                                                }){
-                                                    Text(currentStep < OnBoardingStep.count - 1 ? "Next" :"Get started")
-                                                        .frame(width: 360, height: 60)
-                                                        .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
-                                                        .foregroundColor(.white)
-                                                            .cornerRadius(16)
-                                    
-                                                }
-                                                .buttonStyle(PlainButtonStyle())
-                                    
-                                    NavigationLink(
-                                                  destination: SignIn(),
-                                                  isActive: $isOnboardingComplete,
-                                                  label: { EmptyView() }
-                                            )
+                        if self.currentStep < OnBoardingStep.count - 1 {
+                            self.currentStep += 1
+                        } else {
+                            self.isOnboardingComplete = true
+                        }
+                    }){
+                        Text(currentStep < OnBoardingStep.count - 1 ? "Next" :"Get started")
+                            .frame(width: 360, height: 60)
+                            .background(Color(red: 0.09803921568627451, green: 0.21568627450980393, blue: 0.42745098039215684))
+                            .foregroundColor(.white)
+                            .cornerRadius(16)
+                        
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    NavigationLink(
+                        destination: SignIn(),
+                        isActive: $isOnboardingComplete,
+                        label: { EmptyView() }
+                    )
                     
                     
                 }

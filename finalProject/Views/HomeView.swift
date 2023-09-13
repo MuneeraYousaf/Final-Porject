@@ -151,12 +151,20 @@ struct HomeView: View {
                         }
                     }
                     //MARK:
-                    //            if selectedCatregryIndex != 0 {
-                    //                let selectedAge = categoryRanges[selectedCatregryIndex]
-                    //                filteredGames = filteredGames.filter { game in
-                    //                    return game.details.first(where: { $0.key == "Release date" }).lowercased() == selectedAge.lowercased()
-                    //                }
-                    //            }
+                    if selectedCatregryIndex != 0 {
+                        let selectedAge = categoryRanges[selectedCatregryIndex]
+                        filteredGames = filteredGames.filter { game in
+                            if let topicsDetail = game.details.first(where: { $0.key == "Topics" }) {
+                                let values = topicsDetail.values as? [String] ?? []
+                                // Iterate over the values array and check if any of them match the selected age
+                                return values.contains { $0.lowercased() == selectedAge.lowercased() }
+                            } else {
+                                // Handle the case where "Topics" detail is not found
+                                return false // Or handle it as needed
+                            }
+                        }
+                    }
+
                     
                     // Apply search-based filtering
                     if !searchText.isEmpty {

@@ -403,32 +403,32 @@ struct GameView: View {
                     
                     VStack(alignment: .leading) {
                         Text(game.name)
-                            .font(Font.custom("Saira SemiCondensed", size: 18))
+                            .font(Font.custom("Saira SemiCondensed", size: 22))
                             .bold()
-                            .padding(2)
-                            .frame(maxWidth: .infinity,alignment: .leading)
+//                            .padding(2)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+//                            .background(.red)
                             .multilineTextAlignment(.leading)
                             
                         HStack {
                             //                            Spacer()
                             Text(Double(game.stars).description)
-                                .foregroundColor(.black)
-                                .font(.subheadline)
+                                .font(Font.custom("Saira SemiCondensed", size: 7))
                             RatingView(rating: .constant(game.stars))
-                                .font(.subheadline)
-                        }.padding(2)
+                                .font(Font.custom("Saira SemiCondensed", size: 15))
+                        }
+//                        .padding(2)
                         
-                        Text(game.age)
-                            .font(.subheadline)
+                        Text("Age: \(game.age)")
+                            .font(Font.custom("Saira SemiCondensed", size: 15))
                         
                         if let releaseDateDetail = game.details.first(where: { $0.key == "Release date" }) {
-                            //                            Text("Release Date:")
-                            //                                .font(.subheadline)
-                            Text(releaseDateDetail.values.joined(separator: ", "))
-                                .font(.subheadline)
+                        
+                            Text("Release:\(releaseDateDetail.values.joined(separator: ", "))")
+                                .font(Font.custom("Saira SemiCondensed", size: 15))
                         }
-                    }
-                    .padding(.leading, 8)
+                    } .frame(maxWidth: .infinity,alignment: .leading)
+//                    .padding(.vertical, 8)
                     
                     Spacer()
                     HStack{
@@ -459,9 +459,9 @@ struct GameView: View {
                         .scaleEffect(buttonScale)
                         
                     }
-                        .padding(2)
+//                        .padding(2)
                 }
-                .padding()
+//                .padding()
             }
             Spacer() // Add a spacer to push the button to the bottom
         }

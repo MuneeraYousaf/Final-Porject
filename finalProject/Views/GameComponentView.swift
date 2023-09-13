@@ -125,34 +125,7 @@ import SwiftUI
 struct GameComponentView: View {
     var game: GameData
     var body: some View {
-        //        VStack{
-        //            HStack{
-        //                //
-        //                Image("Rectangle")
-        //                    .resizable()
-        //                    .scaledToFit()
-        //                    .frame(width: 200, height: 200)
-        //                //                    .cornerRadius(20)
-        //                //                .clipShape(Rectangle())
-        //                Spacer()
-        //                VStack(alignment: .leading){
-        //                    HStack(alignment: .top){
-        //                        Text("4.0")
-        //                        Text("******")
-        //                    }
-        //                    //                    .padding()
-        //                    Text("PUBG ")
-        //                        .frame(alignment: .topTrailing)
-        //                    Text("PlayerUnknown's Battlegrounds (PUBG) is an online multiplayer battle royale game developed and published by PUBG....")
-        //                    //                    font(Font.custom("Saira SemiCondensed", size: 5))
-        //                        .font(Font.body)
-        //                    //                        .frame(width: 120 , height: 110, alignment: .topLeading )
-        //
-        //                }
-        //                .frame(width: 200 , height: 160)
-        //            }
-        //            //            .padding(.horizontal)
-        //        }  .padding(.horizontal , 1)
+       
         //صفحة تصميم الالعاب المفضلة للمستخدم
                 ZStack{
                             Rectangle()
@@ -163,6 +136,7 @@ struct GameComponentView: View {
 //                                VStack(spacing: 2){
                                     if game.images.indices.contains(1) {
                                         // Check if the array contains an element at index 1
+//                                        print()
                                         AsyncImage(url: URL(string: game.images[1].src)) { image in
                                             image
                                                 .resizable()
@@ -177,23 +151,32 @@ struct GameComponentView: View {
                                         // Handle the case when index 1 is out of range
                                         Text("Image not available")
                                     }
-                //                    AsyncImage(url: URL(string:"https://source.unsplash.com/250x200/?[videoGame]"))
-//                                    Image("baldurs")
-////                                        .scaledToFill()
-//                                        .resizable()
-//                                        .frame(width:  90 , height: 90)
-//                                        .clipShape(RoundedRectangle(cornerRadius: 16))
-//                                }
-//                                .padding(.trailing)
+         
                                 Divider()
                                     .background(.gray)
                                     .frame(height: 75)
 //                                VStack(alignment: .leading){//تعديل اليوم
 
                                     Text(game.name)
-                                    .font(Font.custom("Saira SemiCondensed", size: 20))
+                                    .font(Font.custom("Saira SemiCondensed", size: 15))
                                         .bold()
                                         .padding(2)
+                       }
+     
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal)
+
+            }
+        }
+  
+
+//struct GameComponentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameComponentView()
+//    }
+//}
 //                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 //                                        .multilineTextAlignment(.leading)
 //                                    HStack{
@@ -231,22 +214,44 @@ struct GameComponentView: View {
 //                                    }
                                     
 //                                }
-                                
-                            }
-                //            .padding()
+//        VStack{
+//            HStack{
+//                //
+//                Image("Rectangle")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 200, height: 200)
+//                //                    .cornerRadius(20)
+//                //                .clipShape(Rectangle())
+//                Spacer()
+//                VStack(alignment: .leading){
+//                    HStack(alignment: .top){
+//                        Text("4.0")
+//                        Text("******")
+//                    }
+//                    //                    .padding()
+//                    Text("PUBG ")
+//                        .frame(alignment: .topTrailing)
+//                    Text("PlayerUnknown's Battlegrounds (PUBG) is an online multiplayer battle royale game developed and published by PUBG....")
+//                    //                    font(Font.custom("Saira SemiCondensed", size: 5))
+//                        .font(Font.body)
+//                    //                        .frame(width: 120 , height: 110, alignment: .topLeading )
+//
 //                }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal)
+//                .frame(width: 200 , height: 160)
+//            }
+//            //            .padding(.horizontal)
+//        }  .padding(.horizontal , 1)
+     
+//            .padding()
+//                }
 //                        .frame(maxWidth: .infinity, alignment: .trailing)
 //                        .padding(.horizontal)
-            }
-        }
-  
-
-//struct GameComponentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GameComponentView()
-//    }
-//}
+//                    AsyncImage(url: URL(string:"https://source.unsplash.com/250x200/?[videoGame]"))
+//                                    Image("baldurs")
+////                                        .scaledToFill()
+//                                        .resizable()
+//                                        .frame(width:  90 , height: 90)
+//                                        .clipShape(RoundedRectangle(cornerRadius: 16))
+//                                }
+//                                .padding(.trailing)
